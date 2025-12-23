@@ -1,278 +1,279 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Module E - Advanced Analysis | SmartPLS Course</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module E – Advanced Analysis | SmartPLS 4.0</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="container">
-    
-    <!-- SIDEBAR NAVIGATION -->
-    <nav class="sidebar">
-        <div class="sidebar-title">SmartPLS Masterclass</div>
-        
-        <div class="nav-group">
-            <div class="nav-label">Phase 1: Foundations</div>
-            <a href="module-a.html" class="nav-item mod-A">
-                <span>A. Research Design</span>
-            </a>
-            <a href="module-b.html" class="nav-item mod-B">
-                <span>B. Data Preparation</span>
-            </a>
+
+  <!-- ================= SIDEBAR ================= -->
+  <nav class="sidebar">
+    <div class="sidebar-title">SmartPLS Masterclass</div>
+
+    <div class="nav-group">
+      <div class="nav-label">Phase 1: Foundations</div>
+      <a href="module-a.html" class="nav-item mod-A">A. Research Design</a>
+      <a href="module-b.html" class="nav-item mod-B">B. Data Preparation</a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label">Phase 2: Analysis</div>
+      <a href="module-c.html" class="nav-item mod-C">C. Measurement Model</a>
+      <a href="module-d.html" class="nav-item mod-D">D. Structural Model</a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label">Phase 3: Advanced</div>
+      <a href="module-e.html" class="nav-item mod-E active">E. Advanced Analysis</a>
+      <a href="module-f.html" class="nav-item mod-F">F. Robustness</a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label">Phase 4: Output</div>
+      <a href="module-g.html" class="nav-item mod-G">G. Research Output</a>
+    </div>
+  </nav>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="main-content">
+
+    <!-- MODULE HEADER -->
+    <div class="tag E">Module E</div>
+    <h1>Advanced Analysis in PLS-SEM</h1>
+    <p class="intro-text">
+      This module extends beyond basic hypothesis testing.
+      We examine prediction, mediation, moderation, managerial relevance,
+      necessity logic, and configurational pathways.
+    </p>
+
+    <!-- ================================================= -->
+    <!-- SECTION 0: WHEN TO USE ADVANCED ANALYSIS -->
+    <!-- ================================================= -->
+    <section>
+      <h2>0. When Do You Need Advanced Analysis?</h2>
+      <ul style="margin-left:1.5rem; line-height:1.9;">
+        <li>When reviewers ask: <em>“Is your model predictive?”</em></li>
+        <li>When theory suggests indirect or conditional effects</li>
+        <li>When managerial or policy implications are required</li>
+        <li>When linear net-effects are insufficient</li>
+      </ul>
+
+      <div class="metric-card info">
+        <div>
+          <div class="metric-label">Key Idea</div>
+          <div class="metric-desc">
+            Advanced analysis does not replace structural results;
+            it deepens interpretation.
+          </div>
         </div>
+      </div>
+    </section>
 
-        <div class="nav-group">
-            <div class="nav-label">Phase 2: Analysis</div>
-            <a href="module-c.html" class="nav-item mod-C">
-                <span>C. Measurement Model</span>
-            </a>
-            <a href="module-d.html" class="nav-item mod-D">
-                <span>D. Structural Model</span>
-            </a>
+    <!-- ================================================= -->
+    <!-- SECTION 1: PLSPREDICT -->
+    <!-- ================================================= -->
+    <section>
+      <h2 style="margin-top:3rem;">1. Predictive Assessment (PLSpredict)</h2>
+
+      <h3>Why PLSpredict?</h3>
+      <p>
+        R² and Q² evaluate explanatory power.
+        <strong>PLSpredict</strong> evaluates true out-of-sample prediction.
+      </p>
+
+      <div class="example-box">
+        Explanatory model: “Does X explain Y?”  
+        Predictive model: “Can X predict future Y?”
+      </div>
+
+      <h3>Evaluation Criteria</h3>
+      <ul style="margin-left:1.5rem;">
+        <li><strong>RMSE / MAE:</strong> Lower values indicate better prediction</li>
+        <li><strong>Benchmark:</strong> PLS vs. Linear Model (LM)</li>
+        <li><strong>Q²<sub>predict</sub>:</strong> Must be &gt; 0</li>
+      </ul>
+
+      <div class="metric-card success">
+        <div>
+          <div class="metric-label">Strong Prediction</div>
+          <div class="metric-desc">PLS error &lt; LM error</div>
         </div>
+        <div class="metric-val">PLS &lt; LM</div>
+      </div>
+    </section>
 
-        <div class="nav-group">
-            <div class="nav-label">Phase 3: Advanced</div>
-            <!-- Module E is Active -->
-            <a href="module-e.html" class="nav-item mod-E active">
-                <span>E. Advanced Analysis</span>
-            </a>
-            <a href="module-f.html" class="nav-item mod-F">
-                <span>F. Robustness</span>
-            </a>
+    <!-- ================================================= -->
+    <!-- SECTION 2: MEDIATION -->
+    <!-- ================================================= -->
+    <section>
+      <h2 style="margin-top:3rem;">2. Mediation Analysis</h2>
+
+      <p>
+        Mediation explains <strong>how</strong> or <strong>why</strong>
+        an independent variable influences an outcome.
+      </p>
+
+      <h3>Basic Mediation Structure</h3>
+      <div class="example-box">
+        X → M → Y  
+        (Indirect effect: X → M × M → Y)
+      </div>
+
+      <h3>Types of Mediation</h3>
+      <ul style="margin-left:1.5rem;">
+        <li><strong>Full mediation:</strong> Direct effect becomes insignificant</li>
+        <li><strong>Partial mediation:</strong> Both direct and indirect effects significant</li>
+      </ul>
+
+      <div class="metric-card warning">
+        <div>
+          <div class="metric-label">Decision Rule</div>
+          <div class="metric-desc">
+            Use bootstrapped confidence intervals for indirect effects.
+          </div>
         </div>
+      </div>
+    </section>
 
-        <div class="nav-group">
-            <div class="nav-label">Phase 4: Output</div>
-            <a href="module-g.html" class="nav-item mod-G">
-                <span>G. Research Output</span>
-            </a>
+    <!-- ================================================= -->
+    <!-- SECTION 3: MODERATION -->
+    <!-- ================================================= -->
+    <section>
+      <h2 style="margin-top:3rem;">3. Moderation Analysis</h2>
+
+      <p>
+        Moderation answers: <em>“When or for whom does X affect Y?”</em>
+      </p>
+
+      <h3>Moderation Logic</h3>
+      <div class="example-box">
+        Effect of X on Y depends on Z  
+        (X × Z → Y)
+      </div>
+
+      <h3>Implementation in SmartPLS</h3>
+      <ul style="margin-left:1.5rem;">
+        <li>Product Indicator (default)</li>
+        <li>Two-Stage approach (recommended for complex models)</li>
+      </ul>
+
+      <div class="metric-card success">
+        <div>
+          <div class="metric-label">Interpretation</div>
+          <div class="metric-desc">
+            A significant interaction term confirms moderation.
+          </div>
         </div>
-    </nav>
+      </div>
+    </section>
 
-    <!-- MAIN CONTENT AREA -->
-    <main class="main-content">
-        
-        <!-- MODULE HEADER -->
-        <div class="tag E">Module E</div>
-        <h1>Advanced Analysis</h1>
-        <p style="font-size: 1.1rem; color: var(--text-muted);">
-            Go beyond basic hypothesis testing. This module covers Prediction (PLSpredict), Management Priorities (IPMA), and Configurational Logic (NCA & fsQCA).
-        </p>
+    <!-- ================================================= -->
+    <!-- SECTION 4: IPMA -->
+    <!-- ================================================= -->
+    <section>
+      <h2 style="margin-top:3rem;">4. Importance–Performance Map Analysis (IPMA)</h2>
 
-        <!-- LESSON 1: PREDICTIVE ASSESSMENT (PLSpredict) -->
-        <h2 style="margin-top: 3rem;">1. Predictive Assessment (PLSpredict)</h2>
-        <p>PLS-SEM is great for prediction. PLSpredict is the modern standard to prove your model works on data it hasn't seen.</p>
+      <p>
+        IPMA translates statistical results into
+        <strong>actionable managerial or policy insights</strong>.
+      </p>
 
-        <div class="tabs-container">
-            <div class="tab-header">
-                <button class="tab-btn active" onclick="openTab(event, 'pred-theory', 'E')">The Logic</button>
-                <button class="tab-btn" onclick="openTab(event, 'pred-metrics', 'E')">Key Metrics</button>
-                <button class="tab-btn" onclick="openTab(event, 'pred-soft', 'E')">Software</button>
-            </div>
+      <h3>Two Dimensions</h3>
+      <ul style="margin-left:1.5rem;">
+        <li><strong>Importance:</strong> Total effects on target construct</li>
+        <li><strong>Performance:</strong> Average latent variable scores</li>
+      </ul>
 
-            <!-- Tab: Theory -->
-            <div id="pred-theory" class="tab-content active">
-                <h3>In-Sample vs. Out-of-Sample</h3>
-                <p><strong>R²</strong> tells you how well the model explains the data you <em>already have</em>.</p>
-                <p><strong>PLSpredict</strong> splits your data into a training sample and a holdout sample. It builds the model on the training data and then tries to predict the values in the holdout sample.</p>
-                <div class="diagram-placeholder" style="height: 150px; background: #F3E8FF; color: #7E22CE;">
-                    <div style="text-align: center;">
-                        <div>Data Split: 90% (Training) | 10% (Holdout)</div>
-                        <div style="font-size: 0.8rem;">SmartPLS predicts Holdout values using Training model.</div>
-                    </div>
-                </div>
-            </div>
+      <div class="example-box">
+        High Importance + Low Performance = Immediate priority
+      </div>
 
-            <!-- Tab: Metrics -->
-            <div id="pred-metrics" class="tab-content">
-                <h3>RMSE & MAE</h3>
-                <p>We look at the prediction error. Lower is better.</p>
-                <ul style="margin-left: 1.5rem;">
-                    <li><strong>RMSE:</strong> Root Mean Squared Error (Penalizes large errors).</li>
-                    <li><strong>MAE:</strong> Mean Absolute Error (Easier to interpret).</li>
-                </ul>
+      <p class="note">
+        IPMA is especially powerful in marketing,
+        service quality, transport policy, and sustainability research.
+      </p>
+    </section>
 
-                <h3 style="margin-top: 1rem;">Benchmark: LM vs. PLS</h3>
-                <p>SmartPLS compares the PLS prediction error against a simple Linear Regression (LM) benchmark.</p>
-                
-                <div class="metric-card success">
-                    <div>
-                        <div class="metric-label">Good Prediction</div>
-                        <div class="metric-desc">PLS prediction error (RMSE/MAE) is lower than Linear Regression.</div>
-                    </div>
-                    <div class="metric-val">PLS &lt; LM</div>
-                </div>
-                <p style="margin-top: 1rem; font-size: 0.9rem;">
-                    Also check <strong>Q²_predict</strong>. It should be > 0 for the key endogenous constructs.
-                </p>
-            </div>
+    <!-- ================================================= -->
+    <!-- SECTION 5: NECESSARY CONDITION ANALYSIS -->
+    <!-- ================================================= -->
+    <section>
+      <h2 style="margin-top:3rem;">5. Necessary Condition Analysis (NCA)</h2>
 
-            <!-- Tab: Software -->
-            <div id="pred-soft" class="tab-content">
-                <h3>Running PLSpredict</h3>
-                <ol style="margin-left: 1.5rem; line-height: 2;">
-                    <li>Go to <strong>Calculate</strong> -> <strong>PLSpredict</strong>.</li>
-                    <li>Select the number of folds (usually 10) and repetitions.</li>
-                    <li>Select the prediction target (endogenous constructs).</li>
-                    <li>Click <strong>Start Analysis</strong>.</li>
-                    <li>Review the table at the bottom: <strong>Prediction Statistics</strong>.</li>
-                </ol>
-            </div>
+      <p>
+        NCA identifies conditions that must be present
+        for an outcome to occur at all.
+      </p>
+
+      <h3>Key Difference</h3>
+      <ul style="margin-left:1.5rem;">
+        <li><strong>PLS:</strong> Sufficient conditions</li>
+        <li><strong>NCA:</strong> Necessary conditions</li>
+      </ul>
+
+      <div class="metric-card success">
+        <div>
+          <div class="metric-label">Effect Size (d)</div>
+          <div class="metric-desc">Necessary condition confirmed</div>
         </div>
+        <div class="metric-val">d ≥ 0.10</div>
+      </div>
 
-        <!-- LESSON 2: IMPORTANCE-PERFORMANCE MAP ANALYSIS (IPMA) -->
-        <h2 style="margin-top: 3rem;">2. IPMA (Importance-Performance Map Analysis)</h2>
-        <p>Standard PLS tells you "Is X important?". IPMA tells you "X is important, but are we doing it well?"</p>
+      <p class="note">
+        Bottleneck analysis shows the minimum level of X
+        required to achieve a given level of Y.
+      </p>
+    </section>
 
-        <div class="tabs-container">
-            <div class="tab-header">
-                <button class="tab-btn active" onclick="openTab(event, 'ipma-theory', 'E')">The Matrix</button>
-                <button class="tab-btn" onclick="openTab(event, 'ipma-quad', 'E')">The 4 Quadrants</button>
-            </div>
+    <!-- ================================================= -->
+    <!-- SECTION 6: fsQCA -->
+    <!-- ================================================= -->
+    <section>
+      <h2 style="margin-top:3rem;">6. fsQCA (Configurational Analysis)</h2>
 
-            <!-- Tab: Theory -->
-            <div id="ipma-theory" class="tab-content active">
-                <h3>Two Dimensions</h3>
-                <p>IPMA creates a scatterplot for your target construct:</p>
-                <ul style="margin-left: 1.5rem;">
-                    <li><strong>X-Axis (Performance):</strong> The average latent variable scores (0 to 100). High means customers are satisfied with X.</li>
-                    <li><strong>Y-Axis (Importance):</strong> The total effects of X on the target. High means X strongly drives the target.</li>
-                </ul>
-                
-                <div class="diagram-placeholder" style="height: 150px; background: #ECFDF5; color: #047857;">
-                    <div style="text-align: center;">
-                        <div>High Importance / Low Performance = <strong>PRIORITIZE THIS!</strong></div>
-                    </div>
-                </div>
-            </div>
+      <p>
+        fsQCA is based on set theory
+        and recognizes <strong>equifinality</strong>
+        (multiple pathways to the same outcome).
+      </p>
 
-            <!-- Tab: Quadrants -->
-            <div id="ipma-quad" class="tab-content">
-                <h3>Management Implications</h3>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                    <div style="background: #D1FAE5; padding: 1rem; border-radius: 8px;">
-                        <strong>Q1: High Importance / High Performance</strong>
-                        <p style="font-size: 0.9rem;">"Keep up the good work." These are your strengths.</p>
-                    </div>
-                    <div style="background: #FEE2E2; padding: 1rem; border-radius: 8px;">
-                        <strong>Q2: High Importance / Low Performance</strong>
-                        <p style="font-size: 0.9rem;"><strong>Action Area.</strong> This drives success but you are failing at it.</p>
-                    </div>
-                    <div style="background: #F3F4F6; padding: 1rem; border-radius: 8px;">
-                        <strong>Q3: Low Importance / Low Performance</strong>
-                        <p style="font-size: 0.9rem;">"Ignore." Doesn't matter much.</p>
-                    </div>
-                    <div style="background: #FEF3C7; padding: 1rem; border-radius: 8px;">
-                        <strong>Q4: Low Importance / High Performance</strong>
-                        <p style="font-size: 0.9rem;">"Possible Overkill." You are wasting resources here.</p>
-                    </div>
-                </div>
-            </div>
+      <h3>Why fsQCA?</h3>
+      <ul style="margin-left:1.5rem;">
+        <li>Asymmetric causality</li>
+        <li>Combinations matter more than single variables</li>
+      </ul>
+
+      <div class="example-box">
+        High Quality * High Trust → Adoption  
+        Low Price * High Convenience → Adoption
+      </div>
+
+      <div class="metric-card success">
+        <div>
+          <div class="metric-label">Consistency</div>
+          <div class="metric-desc">Recipe reliability</div>
         </div>
+        <div class="metric-val">≥ 0.80</div>
+      </div>
+    </section>
 
-        <!-- LESSON 3: NECESSARY CONDITION ANALYSIS (NCA) -->
-        <h2 style="margin-top: 3rem;">3. Necessary Condition Analysis (NCA)</h2>
-        <p>Regression (PLS) tells you if X <em>contributes</em> to Y. NCA tells you if X is <em>required</em> for Y.</p>
+    <!-- ================================================= -->
+    <!-- MODULE END -->
+    <!-- ================================================= -->
+    <div class="module-end">
+      <h3>Advanced Analysis Completed</h3>
+      <p>
+        You have now extended PLS-SEM beyond basic modeling.
+        Next, we verify robustness and generalizability in
+        <a href="module-f.html">Module F – Robustness Checks</a>.
+      </p>
+    </div>
 
-        <div class="tabs-container">
-            <div class="tab-header">
-                <button class="tab-btn active" onclick="openTab(event, 'nca-theory', 'E')">Necessary vs. Sufficient</button>
-                <button class="tab-btn" onclick="openTab(event, 'nca-ceiling', 'E')">The Ceiling Line</button>
-                <button class="tab-btn" onclick="openTab(event, 'nca-res', 'E')">Results</button>
-            </div>
-
-            <!-- Tab: Theory -->
-            <div id="nca-theory" class="tab-content active">
-                <h3>The "Oxygen" Analogy</h3>
-                <p><strong>Sufficient (PLS):</strong> Eating cake makes you happy. (If you eat it, you are happy. If you don't eat it, you might still be happy from something else).</p>
-                <p><strong>Necessary (NCA):</strong> Oxygen is necessary to live. Without it, you die. Having it doesn't guarantee a long life (you might get hit by a bus), but you MUST have it.</p>
-            </div>
-
-            <!-- Tab: Ceiling -->
-            <div id="nca-ceiling" class="tab-content">
-                <h3>The Ceiling Line</h3>
-                <p>NCA draws a "Ceiling" (a line) across the top-left of your scatterplot.</p>
-                <p>No data points can exist above the ceiling (because it's logically impossible).</p>
-                <div style="background: #EFF6FF; padding: 1rem; border-radius: 8px; border: 1px dashed #3B82F6;">
-                    <strong>Logic:</strong> If the condition (X) is low, the outcome (Y) CANNOT be high.
-                </div>
-            </div>
-
-            <!-- Tab: Results -->
-            <div id="nca-res" class="tab-content">
-                <h3>Effect Size (d) and Bottlenecks</h3>
-                <div class="metric-card success">
-                    <div>
-                        <div class="metric-label">Necessary Effect Size (d)</div>
-                        <div class="metric-desc">Small (0.1), Medium (0.3), Large (0.5). If p < 0.05, the condition is necessary.</div>
-                    </div>
-                    <div class="metric-val">d &ge; 0.1</div>
-                </div>
-                <p style="margin-top: 1rem;">
-                    <strong>Bottleneck Analysis:</strong> What is the minimum level of X required to achieve a desired level of Y (e.g., 80% Satisfaction)?
-                </p>
-            </div>
-        </div>
-
-        <!-- LESSON 4: fsQCA (CONFIGURATIONAL) -->
-        <h2 style="margin-top: 3rem;">4. fsQCA (Configurational Logic)</h2>
-        <p>Instead of looking at variables one-by-one (net effects), fsQCA looks at <strong>combinations</strong> of conditions (recipes) that lead to an outcome.</p>
-
-        <div class="tabs-container">
-            <div class="tab-header">
-                <button class="tab-btn active" onclick="openTab(event, 'fsqca-theory', 'E')">Set Theory</button>
-                <button class="tab-btn" onclick="openTab(event, 'fsqca-truth', 'E')">Truth Table</button>
-            </div>
-
-            <!-- Tab: Theory -->
-            <div id="fsqca-theory" class="tab-content active">
-                <h3>Equifinality</h3>
-                <p>PLS assumes one path fits everyone. fsQCA assumes there are multiple paths (recipes) to the same outcome.</p>
-                <p><strong>Example:</strong></p>
-                <ul style="margin-left: 1.5rem;">
-                    <li><strong>Recipe 1:</strong> High Price * High Quality = Loyalty</li>
-                    <li><strong>Recipe 2:</strong> Low Price * Convenience = Loyalty</li>
-                </ul>
-                <p>Both lead to Loyalty, but through different configurations.</p>
-            </div>
-
-            <!-- Tab: Truth Table -->
-            <div id="fsqca-truth" class="tab-content">
-                <h3>The Truth Table Algorithm</h3>
-                <p>SmartPLS integrates fsQCA (using the R package). It analyzes the data to identify these recipes.</p>
-                
-                <h3>Thresholds</h3>
-                <div class="metric-card success">
-                    <div>
-                        <div class="metric-label">Consistency</div>
-                        <div class="metric-desc">Does the recipe consistently produce the outcome?</div>
-                    </div>
-                    <div class="metric-val">&gt; 0.75 (0.80 strict)</div>
-                </div>
-                <div class="metric-card warning" style="margin-top: 1rem;">
-                    <div>
-                        <div class="metric-label">Coverage</div>
-                        <div class="metric-desc">How much of the outcome does this recipe explain?</div>
-                    </div>
-                    <div class="metric-val">Higher is better</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- MODULE E CHECKPOINT -->
-        <div style="margin-top: 4rem; padding: 2rem; background: #F3E8FF; border: 1px solid #D8B4FE; border-radius: 12px; text-align: center;">
-            <h3 style="color: #6B21A8; margin-bottom: 0.5rem;">Module E Complete!</h3>
-            <p style="color: #6B21A8;">
-                You have now tested Prediction (PLSpredict), Management Strategy (IPMA), and Logic (NCA/fsQCA).
-                <br>Next: Robustness Checks in <a href="module-f.html" style="text-decoration: underline; font-weight: bold;">Module F</a>.
-            </p>
-        </div>
-
-    </main>
+  </main>
 </div>
 
 <script src="script.js"></script>
