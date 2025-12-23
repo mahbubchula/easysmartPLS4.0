@@ -1,279 +1,284 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Module D - Structural Model | SmartPLS Course</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module D – Structural Model Assessment | SmartPLS 4.0</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="container">
-    
-    <!-- SIDEBAR NAVIGATION -->
-    <nav class="sidebar">
-        <div class="sidebar-title">SmartPLS Masterclass</div>
-        
-        <div class="nav-group">
-            <div class="nav-label">Phase 1: Foundations</div>
-            <a href="module-a.html" class="nav-item mod-A">
-                <span>A. Research Design</span>
-            </a>
-            <a href="module-b.html" class="nav-item mod-B">
-                <span>B. Data Preparation</span>
-            </a>
+
+  <!-- ================= SIDEBAR ================= -->
+  <nav class="sidebar">
+    <div class="sidebar-title">SmartPLS Masterclass</div>
+
+    <div class="nav-group">
+      <div class="nav-label">Phase 1: Foundations</div>
+      <a href="module-a.html" class="nav-item mod-A">A. Research Design</a>
+      <a href="module-b.html" class="nav-item mod-B">B. Data Preparation</a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label">Phase 2: Analysis</div>
+      <a href="module-c.html" class="nav-item mod-C">C. Measurement Model</a>
+      <a href="module-d.html" class="nav-item mod-D active">D. Structural Model</a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label">Phase 3: Advanced</div>
+      <a href="module-e.html" class="nav-item mod-E">E. Advanced Analysis</a>
+      <a href="module-f.html" class="nav-item mod-F">F. Robustness</a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label">Phase 4: Output</div>
+      <a href="module-g.html" class="nav-item mod-G">G. Research Output</a>
+    </div>
+  </nav>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="main-content">
+
+    <!-- MODULE HEADER -->
+    <div class="tag D">Module D</div>
+    <h1>Structural Model Assessment</h1>
+    <p class="intro-text">
+      The structural (inner) model evaluates the theoretical relationships between constructs.
+      This is where hypotheses are tested and theory is confirmed or rejected.
+    </p>
+
+    <!-- ================================================= -->
+    <!-- SECTION 0: STRUCTURAL MODEL WORKFLOW -->
+    <!-- ================================================= -->
+    <section>
+      <h2>0. Correct Structural Model Workflow</h2>
+      <ol style="margin-left:1.5rem; line-height:2;">
+        <li>Confirm measurement model validity (Module C)</li>
+        <li>Check collinearity (Inner VIF)</li>
+        <li>Assess path coefficients & significance (Bootstrapping)</li>
+        <li>Evaluate explanatory power (R², f²)</li>
+        <li>Evaluate predictive relevance (Q²)</li>
+        <li>Report model fit (SRMR – optional but recommended)</li>
+      </ol>
+
+      <div class="metric-card warning">
+        <div>
+          <div class="metric-label">Critical Rule</div>
+          <div class="metric-desc">
+            Never interpret paths if measurement validity is not established.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================= -->
+    <!-- SECTION 1: COLLINEARITY -->
+    <!-- ================================================= -->
+    <section>
+      <h2 style="margin-top:3rem;">1. Collinearity Assessment (Inner VIF)</h2>
+      <p>
+        Collinearity occurs when predictor constructs are highly correlated,
+        inflating standard errors and destabilizing path estimates.
+      </p>
+
+      <div class="metric-card success">
+        <div>
+          <div class="metric-label">Inner VIF Threshold</div>
+          <div class="metric-desc">Collinearity is not a concern</div>
+        </div>
+        <div class="metric-val">&lt; 3.3</div>
+      </div>
+
+      <p class="note">
+        Check VIF values for each endogenous construct in SmartPLS
+        before interpreting path coefficients.
+      </p>
+    </section>
+
+    <!-- ================================================= -->
+    <!-- SECTION 2: PATH COEFFICIENTS -->
+    <!-- ================================================= -->
+    <section>
+      <h2 style="margin-top:3rem;">2. Path Coefficients & Hypothesis Testing</h2>
+
+      <div class="tabs-container">
+        <div class="tab-header">
+          <button class="tab-btn active" onclick="openTab(event,'d_path_meaning','D')">Meaning</button>
+          <button class="tab-btn" onclick="openTab(event,'d_path_boot','D')">Bootstrapping</button>
+          <button class="tab-btn" onclick="openTab(event,'d_path_rules','D')">Decision Rules</button>
         </div>
 
-        <div class="nav-group">
-            <div class="nav-label">Phase 2: Analysis</div>
-            <a href="module-c.html" class="nav-item mod-C">
-                <span>C. Measurement Model</span>
-            </a>
-            <!-- Module D is Active -->
-            <a href="module-d.html" class="nav-item mod-D active">
-                <span>D. Structural Model</span>
-            </a>
+        <div id="d_path_meaning" class="tab-content active">
+          <h3>Path Coefficient (β)</h3>
+          <p>
+            The standardized path coefficient indicates the direction
+            and strength of the relationship between two constructs.
+          </p>
+
+          <ul style="margin-left:1.5rem;">
+            <li><strong>β &gt; 0:</strong> Positive relationship</li>
+            <li><strong>β &lt; 0:</strong> Negative relationship</li>
+            <li><strong>|β| closer to 1:</strong> Stronger effect</li>
+          </ul>
+
+          <div class="example-box">
+            β = 0.45 → A one standard deviation increase in X
+            increases Y by 0.45 standard deviations.
+          </div>
         </div>
 
-        <div class="nav-group">
-            <div class="nav-label">Phase 3: Advanced</div>
-            <a href="module-e.html" class="nav-item mod-E">
-                <span>E. Advanced Analysis</span>
-            </a>
-            <a href="module-f.html" class="nav-item mod-F">
-                <span>F. Robustness</span>
-            </a>
+        <div id="d_path_boot" class="tab-content">
+          <h3>Why Bootstrapping?</h3>
+          <p>
+            PLS-SEM does not assume normality.
+            Bootstrapping provides empirical sampling distributions
+            to assess significance.
+          </p>
+
+          <ol style="margin-left:1.5rem; line-height:2;">
+            <li>Calculate → Bootstrapping</li>
+            <li>Subsamples: 5,000 (minimum)</li>
+            <li>Sign changes: No sign changes</li>
+          </ol>
         </div>
 
-        <div class="nav-group">
-            <div class="nav-label">Phase 4: Output</div>
-            <a href="module-g.html" class="nav-item mod-G">
-                <span>G. Research Output</span>
-            </a>
+        <div id="d_path_rules" class="tab-content">
+          <h3>Significance Thresholds</h3>
+
+          <div class="metric-card success">
+            <div>
+              <div class="metric-label">p &lt; 0.05</div>
+              <div class="metric-desc">Hypothesis supported</div>
+            </div>
+            <div class="metric-val">|t| ≥ 1.96</div>
+          </div>
+
+          <div class="metric-card warning" style="margin-top:1rem;">
+            <div>
+              <div class="metric-label">p &lt; 0.10</div>
+              <div class="metric-desc">Exploratory acceptance</div>
+            </div>
+            <div class="metric-val">|t| ≥ 1.645</div>
+          </div>
+
+          <p class="note">
+            Both statistical significance and sign consistency
+            with theory are required.
+          </p>
         </div>
-    </nav>
+      </div>
+    </section>
 
-    <!-- MAIN CONTENT AREA -->
-    <main class="main-content">
-        
-        <!-- MODULE HEADER -->
-        <div class="tag D">Module D</div>
-        <h1>Structural Model Assessment</h1>
-        <p style="font-size: 1.1rem; color: var(--text-muted);">
-            The "Inner Model". We test the relationships (hypotheses) between your constructs and evaluate the model's explanatory power.
-        </p>
+    <!-- ================================================= -->
+    <!-- SECTION 3: EXPLANATORY POWER -->
+    <!-- ================================================= -->
+    <section>
+      <h2 style="margin-top:3rem;">3. Explanatory Power (R² & f²)</h2>
 
-        <!-- LESSON 1: PATH COEFFICIENTS & SIGNIFICANCE -->
-        <h2 style="margin-top: 3rem;">1. Path Coefficients & Hypotheses</h2>
-        <p>This answers your research questions. Is there a relationship? Is it positive or negative?</p>
+      <h3>Coefficient of Determination (R²)</h3>
+      <p>
+        R² represents the proportion of variance in an endogenous construct
+        explained by its predictors.
+      </p>
 
-        <div class="tabs-container">
-            <div class="tab-header">
-                <button class="tab-btn active" onclick="openTab(event, 'path-theory', 'D')">The Logic</button>
-                <button class="tab-btn" onclick="openTab(event, 'path-boot', 'D')">Bootstrapping</button>
-                <button class="tab-btn" onclick="openTab(event, 'path-threshold', 'D')">Decision Rule</button>
-            </div>
+      <div class="metric-card warning">
+        <div class="metric-label">Weak</div>
+        <div class="metric-val">0.25</div>
+      </div>
+      <div class="metric-card success">
+        <div class="metric-label">Moderate</div>
+        <div class="metric-val">0.50</div>
+      </div>
+      <div class="metric-card success" style="border-left-color:#166534;">
+        <div class="metric-label">Substantial</div>
+        <div class="metric-val">0.75</div>
+      </div>
 
-            <!-- Tab: Logic -->
-            <div id="path-theory" class="tab-content active">
-                <h3>The Beta Value (&beta;)</h3>
-                <p>The Path Coefficient (Standardized Beta) ranges from -1 to +1.</p>
-                <ul style="margin-left: 1.5rem;">
-                    <li><strong>Positive (+):</strong> As Variable A increases, Variable B increases.</li>
-                    <li><strong>Negative (-):</strong> As Variable A increases, Variable B decreases.</li>
-                    <li><strong>Value Magnitude:</strong> Closer to 1 means a stronger relationship.</li>
-                </ul>
-                <div class="metric-card" style="border-left-color: var(--color-struct);">
-                    <div>
-                        <div class="metric-label">Example</div>
-                        <div class="metric-desc">&beta; = 0.45 means a moderate positive relationship.</div>
-                    </div>
-                    <div class="metric-val">0.45</div>
-                </div>
-            </div>
+      <h3 style="margin-top:2rem;">Effect Size (f²)</h3>
+      <p>
+        f² evaluates the contribution of each predictor construct
+        to an endogenous variable.
+      </p>
 
-            <!-- Tab: Bootstrapping -->
-            <div id="path-boot" class="tab-content">
-                <h3>Why do we need Bootstrapping?</h3>
-                <p>The PLS-SEM algorithm calculates the Path Coefficients, but it doesn't tell us if they are "Real" or just "Luck".</p>
-                <p>We use <strong>Bootstrapping</strong> to check stability.</p>
-                <div style="background: #FEF2F2; padding: 1rem; border-radius: 8px; border: 1px solid #FCA5A5; margin-top: 1rem;">
-                    <strong>Process:</strong> SmartPLS creates 5,000 (or more) random sub-samples from your data. It calculates the path for each sub-sample to see if the result is consistent.
-                </div>
-                <h4 style="margin-top: 1rem;">Software Steps:</h4>
-                <ol style="margin-left: 1.5rem;">
-                    <li>Calculate: <strong>Bootstrapping</strong>.</li>
-                    <li>Sign: "Sign Changes" set to "No sign changes" (usually).</li>
-                    <li>Subsamples: 5,000.</li>
-                    <li>Run.</li>
-                </ol>
-            </div>
+      <ul style="margin-left:1.5rem;">
+        <li>Small: f² ≥ 0.02</li>
+        <li>Medium: f² ≥ 0.15</li>
+        <li>Large: f² ≥ 0.35</li>
+      </ul>
 
-            <!-- Tab: Thresholds -->
-            <div id="path-threshold" class="tab-content">
-                <h3>The T-Value & P-Value</h3>
-                <p>Look at the "T Statistics" column in the Bootstrapping results.</p>
-                
-                <div class="metric-card success">
-                    <div>
-                        <div class="metric-label">Significant (p < 0.05)</div>
-                        <div class="metric-desc">Standard for most journals.</div>
-                    </div>
-                    <div class="metric-val">|T| &ge; 1.96</div>
-                </div>
-                
-                <div class="metric-card warning" style="margin-top: 1rem;">
-                    <div>
-                        <div class="metric-label">Significant (p < 0.10)</div>
-                        <div class="metric-desc">Sometimes accepted in exploratory studies.</div>
-                    </div>
-                    <div class="metric-val">|T| &ge; 1.645</div>
-                </div>
+      <p class="note">
+        A significant path with negligible f² may lack practical importance.
+      </p>
+    </section>
 
-                <h3 style="margin-top: 1.5rem;">Hypothesis Decision</h3>
-                <p><strong>Supported:</strong> T-value > 1.96 AND the Sign matches your hypothesis (e.g., you predicted positive, and result is +).</p>
-                <p><strong>Not Supported:</strong> T-value < 1.96 (insignificant) OR Sign is opposite.</p>
-            </div>
+    <!-- ================================================= -->
+    <!-- SECTION 4: PREDICTIVE RELEVANCE -->
+    <!-- ================================================= -->
+    <section>
+      <h2 style="margin-top:3rem;">4. Predictive Relevance (Q²)</h2>
+
+      <p>
+        Q² assesses out-of-sample predictive capability
+        using the blindfolding procedure.
+      </p>
+
+      <div class="metric-card success">
+        <div>
+          <div class="metric-label">Predictive Relevance</div>
+          <div class="metric-desc">Model predicts unseen data</div>
         </div>
+        <div class="metric-val">Q² &gt; 0</div>
+      </div>
 
+      <p>
+        Effect size interpretation:
+        0.02 (small), 0.15 (medium), 0.35 (large).
+      </p>
+    </section>
 
-        <!-- LESSON 2: EXPLANATORY POWER (R² & f²) -->
-        <h2 style="margin-top: 3rem;">2. Explanatory Power (R² & f²)</h2>
-        <p>How well does your model explain the data?</p>
+    <!-- ================================================= -->
+    <!-- SECTION 5: MODEL FIT -->
+    <!-- ================================================= -->
+    <section>
+      <h2 style="margin-top:3rem;">5. Model Fit (SRMR)</h2>
 
-        <div class="tabs-container">
-            <div class="tab-header">
-                <button class="tab-btn active" onclick="openTab(event, 'r2-theory', 'D')">R² (In Sample)</button>
-                <button class="tab-btn" onclick="openTab(event, 'f2-theory', 'D')">f² (Effect Size)</button>
-            </div>
+      <p>
+        Although prediction-oriented, PLS-SEM studies
+        often report SRMR as a global fit index.
+      </p>
 
-            <!-- Tab: R2 -->
-            <div id="r2-theory" class="tab-content active">
-                <h3>Coefficient of Determination (R²)</h3>
-                <p>R² measures the variance in the Dependent Variable explained by the Independent Variables.</p>
-                <p>It is an "In-Sample" measure (how well the model explains the data we currently have).</p>
-                
-                <h3 style="margin-top: 1rem;">Thresholds</h3>
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                    <div class="metric-card warning">
-                        <div class="metric-label">Weak</div>
-                        <div class="metric-val">0.25</div>
-                    </div>
-                    <div class="metric-card success">
-                        <div class="metric-label">Moderate</div>
-                        <div class="metric-val">0.50</div>
-                    </div>
-                    <div class="metric-card success" style="border-left-color: #166534;">
-                        <div class="metric-label">Substantial</div>
-                        <div class="metric-val">0.75</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tab: f2 -->
-            <div id="f2-theory" class="tab-content">
-                <h3>Effect Size (f²)</h3>
-                <p><strong>Question:</strong> "Even if the path is significant, does it actually matter?"</p>
-                <p>f² calculates the change in R² when a specific predictor is removed from the model.</p>
-                
-                <div class="diagram-placeholder" style="height: 100px; font-size: 0.8rem; background: #FFF1F2;">
-                    Remove Construct A -> R² drops from 0.60 to 0.55 -> Effect is calculated.
-                </div>
-
-                <h3 style="margin-top: 1rem;">Thresholds</h3>
-                <div class="metric-card warning">
-                    <div class="metric-label">Small Effect</div>
-                    <div class="metric-val">f² &ge; 0.02</div>
-                </div>
-                <div class="metric-card success" style="margin-top: 0.5rem;">
-                    <div class="metric-label">Medium Effect</div>
-                    <div class="metric-val">f² &ge; 0.15</div>
-                </div>
-                <div class="metric-card success" style="margin-top: 0.5rem; border-left-color: #166534;">
-                    <div class="metric-label">Large Effect</div>
-                    <div class="metric-val">f² &ge; 0.35</div>
-                </div>
-                <p style="margin-top: 1rem;"><em>Note: f² values below 0.02 imply the predictor has no substantive impact, even if significant.</em></p>
-            </div>
+      <div class="metric-card success">
+        <div>
+          <div class="metric-label">Good Fit</div>
+          <div class="metric-desc">Henseler et al. (2014)</div>
         </div>
+        <div class="metric-val">&lt; 0.08</div>
+      </div>
 
-
-        <!-- LESSON 3: PREDICTIVE RELEVANCE (Q²) -->
-        <h2 style="margin-top: 3rem;">3. Predictive Relevance (Q²)</h2>
-        <p>Can the model predict data it hasn't seen?</p>
-
-        <div class="tabs-container">
-            <div class="tab-header">
-                <button class="tab-btn active" onclick="openTab(event, 'q2-theory', 'D')">Blindfolding</button>
-                <button class="tab-btn" onclick="openTab(event, 'q2-threshold', 'D')">Thresholds</button>
-            </div>
-
-            <div id="q2-theory" class="tab-content active">
-                <h3>Stone-Geisser Q² (Blindfolding)</h3>
-                <p>R² is "In-Sample". Q² is "Out-of-Sample".</p>
-                <p>SmartPLS temporarily hides parts of the data (omission distance d), uses the model to predict the hidden values, and checks the error.</p>
-                <ul style="margin-left: 1.5rem; margin-top: 1rem;">
-                    <li><strong>Calculation:</strong> <code>1 - (Sum of Squared Errors / Sum of Squares Prediction)</code></li>
-                </ul>
-            </div>
-
-            <div id="q2-threshold" class="tab-content">
-                <h3>The Golden Rule of Q²</h3>
-                <div class="metric-card success">
-                    <div>
-                        <div class="metric-label">Predictive Relevance</div>
-                        <div class="metric-desc">The model has predictive power.</div>
-                    </div>
-                    <div class="metric-val">Q² &gt; 0</div>
-                </div>
-                <p style="margin-top: 1rem;">
-                    If Q² < 0, your model lacks predictive relevance. You might need to rethink your model or include better predictors.
-                </p>
-                <p><strong>Effect Sizes:</strong> Small (0.02), Medium (0.15), Large (0.35).</p>
-            </div>
+      <div class="metric-card warning" style="margin-top:1rem;">
+        <div>
+          <div class="metric-label">Acceptable</div>
+          <div class="metric-desc">Hu & Bentler (1999)</div>
         </div>
+        <div class="metric-val">&lt; 0.10</div>
+      </div>
+    </section>
 
+    <!-- ================================================= -->
+    <!-- MODULE END -->
+    <!-- ================================================= -->
+    <div class="module-end">
+      <h3>Structural Model Assessment Completed</h3>
+      <p>
+        If paths are significant, R² and Q² are meaningful,
+        and collinearity is controlled,
+        proceed to <a href="module-e.html">Module E – Advanced Analysis</a>.
+      </p>
+    </div>
 
-        <!-- LESSON 4: MODEL FIT (SRMR) -->
-        <h2 style="margin-top: 3rem;">4. Model Fit Indices (SRMR)</h2>
-        <p>While PLS-SEM focuses on prediction, reviewers often ask for "Model Fit".</p>
-
-        <div class="tabs-container">
-            <div class="tab-header">
-                <button class="tab-btn active" onclick="openTab(event, 'fit-srmr', 'D')">SRMR</button>
-            </div>
-
-            <div id="fit-srmr" class="tab-content active">
-                <h3>Standardized Root Mean Square Residual (SRMR)</h3>
-                <p>SRMR is the difference between the observed correlations (your data) and the implied correlations (your model).</p>
-                
-                <div class="metric-card success">
-                    <div>
-                        <div class="metric-label">Good Fit</div>
-                        <div class="metric-desc">Henseler et al. (2014) threshold.</div>
-                    </div>
-                    <div class="metric-val">&lt; 0.08</div>
-                </div>
-                <div class="metric-card warning" style="margin-top: 1rem;">
-                    <div>
-                        <div class="metric-label">Acceptable Fit</div>
-                        <div class="metric-desc">Hu & Bentler (1999) threshold.</div>
-                    </div>
-                    <div class="metric-val">&lt; 0.10</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- MODULE D CHECKPOINT -->
-        <div style="margin-top: 4rem; padding: 2rem; background: #FEF2F2; border: 1px solid #FECACA; border-radius: 12px; text-align: center;">
-            <h3 style="color: #991B1B; margin-bottom: 0.5rem;">Structural Model Complete!</h3>
-            <p style="color: #991B1B;">
-                If your paths are significant (T > 1.96), R² > 0.10, and Q² > 0...
-                <br>You have a valid model. Now, let's dig deeper with <a href="module-e.html" style="text-decoration: underline; font-weight: bold;">Module E (Advanced Analysis)</a>.
-            </p>
-        </div>
-
-    </main>
+  </main>
 </div>
 
 <script src="script.js"></script>
