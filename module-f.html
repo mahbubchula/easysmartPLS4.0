@@ -1,227 +1,298 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Module F - Robustness & Heterogeneity | SmartPLS Course</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module F – Robustness & Heterogeneity | SmartPLS 4.0</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="container">
-    
-    <!-- SIDEBAR NAVIGATION -->
-    <nav class="sidebar">
-        <div class="sidebar-title">SmartPLS Masterclass</div>
-        
-        <div class="nav-group">
-            <div class="nav-label">Phase 1: Foundations</div>
-            <a href="module-a.html" class="nav-item mod-A">
-                <span>A. Research Design</span>
-            </a>
-            <a href="module-b.html" class="nav-item mod-B">
-                <span>B. Data Preparation</span>
-            </a>
+
+  <!-- ================= SIDEBAR ================= -->
+  <nav class="sidebar">
+    <div class="sidebar-title">SmartPLS Masterclass</div>
+
+    <div class="nav-group">
+      <div class="nav-label">Phase 1: Foundations</div>
+      <a href="module-a.html" class="nav-item mod-A">A. Research Design</a>
+      <a href="module-b.html" class="nav-item mod-B">B. Data Preparation</a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label">Phase 2: Analysis</div>
+      <a href="module-c.html" class="nav-item mod-C">C. Measurement Model</a>
+      <a href="module-d.html" class="nav-item mod-D">D. Structural Model</a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label">Phase 3: Advanced</div>
+      <a href="module-e.html" class="nav-item mod-E">E. Advanced Analysis</a>
+      <a href="module-f.html" class="nav-item mod-F active">F. Robustness</a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label">Phase 4: Output</div>
+      <a href="module-g.html" class="nav-item mod-G">G. Research Output</a>
+    </div>
+  </nav>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="main-content">
+
+    <!-- MODULE HEADER -->
+    <div class="tag F">Module F</div>
+    <h1>Robustness, Heterogeneity & Bias Assessment</h1>
+    <p class="intro-text">
+      Robustness analysis ensures that your results are not sample-specific,
+      group-dependent, or driven by bias.
+      This module is essential for Q1 journal acceptance.
+    </p>
+
+    <!-- ================================================= -->
+    <!-- SECTION 0: WHY ROBUSTNESS MATTERS -->
+    <!-- ================================================= -->
+    <section>
+      <h2>0. Why Do Reviewers Ask for Robustness?</h2>
+      <ul style="margin-left:1.5rem; line-height:1.9;">
+        <li>Do different groups interpret constructs the same way?</li>
+        <li>Are relationships stable across sub-samples?</li>
+        <li>Are results biased by common method variance?</li>
+        <li>Is the model vulnerable to endogeneity?</li>
+      </ul>
+
+      <div class="metric-card warning">
+        <div>
+          <div class="metric-label">Reviewer Reality</div>
+          <div class="metric-desc">
+            Many papers are rejected not because results are wrong,
+            but because robustness is not demonstrated.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================= -->
+    <!-- SECTION 1: MICOM -->
+    <!-- ================================================= -->
+    <section>
+      <h2 style="margin-top:3rem;">1. Measurement Invariance (MICOM)</h2>
+      <p>
+        Measurement Invariance of Composites (MICOM) verifies whether constructs
+        have the same meaning across groups.
+      </p>
+
+      <div class="tabs-container">
+        <div class="tab-header">
+          <button class="tab-btn active" onclick="openTab(event,'f_micom_logic','F')">Logic</button>
+          <button class="tab-btn" onclick="openTab(event,'f_micom_steps','F')">Three Steps</button>
+          <button class="tab-btn" onclick="openTab(event,'f_micom_rules','F')">Decision Rules</button>
         </div>
 
-        <div class="nav-group">
-            <div class="nav-label">Phase 2: Analysis</div>
-            <a href="module-c.html" class="nav-item mod-C">
-                <span>C. Measurement Model</span>
-            </a>
-            <a href="module-d.html" class="nav-item mod-D">
-                <span>D. Structural Model</span>
-            </a>
+        <div id="f_micom_logic" class="tab-content active">
+          <h3>Conceptual Meaning</h3>
+          <p>
+            MICOM ensures that group differences reflect real behavioral differences
+            and not differences in measurement interpretation.
+          </p>
+          <div class="example-box">
+            Without invariance, comparing path coefficients across groups is invalid.
+          </div>
         </div>
 
-        <div class="nav-group">
-            <div class="nav-label">Phase 3: Advanced</div>
-            <a href="module-e.html" class="nav-item mod-E">
-                <span>E. Advanced Analysis</span>
-            </a>
-            <!-- Module F is Active -->
-            <a href="module-f.html" class="nav-item mod-F active">
-                <span>F. Robustness</span>
-            </a>
+        <div id="f_micom_steps" class="tab-content">
+          <h3>Three-Step MICOM Procedure</h3>
+          <ol style="margin-left:1.5rem; line-height:2;">
+            <li><strong>Configural Invariance:</strong> Same indicators and model structure</li>
+            <li><strong>Compositional Invariance:</strong> Correlation of construct scores (c-value)</li>
+            <li><strong>Equality of Means & Variances:</strong> Optional, descriptive</li>
+          </ol>
         </div>
 
-        <div class="nav-group">
-            <div class="nav-label">Phase 4: Output</div>
-            <a href="module-g.html" class="nav-item mod-G">
-                <span>G. Research Output</span>
-            </a>
+        <div id="f_micom_rules" class="tab-content">
+          <h3>Interpretation</h3>
+
+          <div class="metric-card success">
+            <div>
+              <div class="metric-label">Invariance Established</div>
+              <div class="metric-desc">
+                Original c-value lies within 5%–95% permutation interval
+              </div>
+            </div>
+            <div class="metric-val">CI contains c</div>
+          </div>
+
+          <div class="metric-card warning" style="margin-top:1rem;">
+            <div>
+              <div class="metric-label">Partial Invariance</div>
+              <div class="metric-desc">
+                ≥ 80% of constructs invariant → MGA allowed with caution
+              </div>
+            </div>
+            <div class="metric-val">≥ 80%</div>
+          </div>
         </div>
-    </nav>
+      </div>
+    </section>
 
-    <!-- MAIN CONTENT AREA -->
-    <main class="main-content">
-        
-        <!-- MODULE HEADER -->
-        <div class="tag F">Module F</div>
-        <h1>Robustness & Heterogeneity</h1>
-        <p style="font-size: 1.1rem; color: var(--text-muted);">
-            Comparing groups (e.g., Male vs. Female). We must first prove "Invariance" (they understand questions the same way) before comparing results.
-        </p>
+    <!-- ================================================= -->
+    <!-- SECTION 2: MGA -->
+    <!-- ================================================= -->
+    <section>
+      <h2 style="margin-top:3rem;">2. Multi-Group Analysis (MGA)</h2>
+      <p>
+        MGA tests whether structural relationships differ significantly across groups.
+      </p>
 
-        <!-- LESSON 1: MEASUREMENT INVARIANCE (MICOM) -->
-        <h2 style="margin-top: 3rem;">1. Measurement Invariance (MICOM)</h2>
-        <p><strong>Measurement Invariance of Composites (MICOM)</strong> is required before you run Multi-Group Analysis.</p>
-
-        <div class="tabs-container">
-            <div class="tab-header">
-                <button class="tab-btn active" onclick="openTab(event, 'micom-theory', 'F')">The Logic</button>
-                <button class="tab-btn" onclick="openTab(event, 'micom-steps', 'F')">The 3 Steps</button>
-                <button class="tab-btn" onclick="openTab(event, 'micom-threshold', 'F')">Thresholds</button>
-            </div>
-
-            <!-- Tab: Logic -->
-            <div id="micom-theory" class="tab-content active">
-                <h3>Why do we need this?</h3>
-                <p>Imagine you compare "Happiness" between a Child and an Adult. If the Child thinks "Happiness" means "Getting Candy" and the Adult thinks it means "Financial Security", you cannot compare their scores.</p>
-                <p>MICOM checks if the <strong>constructs</strong> have the same meaning across groups.</p>
-                
-                <div class="diagram-placeholder" style="height: 150px; background: #E0E7FF; color: #4338CA;">
-                    <div style="text-align: center;">
-                        <div>Group A: 5 Questions &rarr; "Trust"</div>
-                        <div style="font-size: 1.5rem;">= ?</div>
-                        <div>Group B: 5 Questions &rarr; "Trust"</div>
-                        <div style="font-size: 0.8rem; margin-top: 10px;">(MICOM checks if "=" holds true)</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tab: Steps -->
-            <div id="micom-steps" class="tab-content">
-                <h3>The 3-Step Procedure</h3>
-                <p>SmartPLS runs these sequentially. You must pass Step 2 to continue.</p>
-                
-                <div style="display: grid; gap: 1rem;">
-                    <div style="padding: 1rem; background: #F8FAFC; border-radius: 8px;">
-                        <strong>Step 1: Configural Invariance</strong>
-                        <p style="font-size: 0.9rem;">The basic model setup is the same for both groups (same number of indicators). <em>(Always passed if data is imported correctly).</em></p>
-                    </div>
-                    <div style="padding: 1rem; background: #EEF2FF; border-radius: 8px; border-left: 4px solid var(--color-robust);">
-                        <strong>Step 2: Compositional Invariance (The Check)</strong>
-                        <p style="font-size: 0.9rem;">Are the construct scores equal? We look at the <strong>c-value</strong> (correlation of construct scores between groups).</p>
-                    </div>
-                    <div style="padding: 1rem; background: #F8FAFC; border-radius: 8px;">
-                        <strong>Step 3: Equal Means (Optional)</strong>
-                        <p style="font-size: 0.9rem;">Do the groups have the same average scores for the construct?</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tab: Thresholds -->
-            <div id="micom-threshold" class="tab-content">
-                <h3>Interpreting the Results</h3>
-                
-                <div class="metric-card success">
-                    <div>
-                        <div class="metric-label">Step 2 Passed (Invariance)</div>
-                        <div class="metric-desc">The "Original Value (c)" falls within the confidence interval [5% to 95%].</div>
-                    </div>
-                    <div class="metric-val">5% &lt; c &lt; 95%</div>
-                </div>
-
-                <div class="metric-card warning" style="margin-top: 1rem;">
-                    <div>
-                        <div class="metric-label">Partial Invariance</div>
-                        <div class="metric-desc">At least 80% of constructs show invariance. You can proceed with caution.</div>
-                    </div>
-                    <div class="metric-val">&ge; 80%</div>
-                </div>
-
-                <div class="metric-card danger" style="margin-top: 1rem;">
-                    <div>
-                        <div class="metric-label">Step 2 Failed</div>
-                        <div class="metric-desc">The groups interpret the constructs differently. Do NOT run MGA.</div>
-                    </div>
-                    <div class="metric-val">c is OUTSIDE CI</div>
-                </div>
-            </div>
+      <div class="tabs-container">
+        <div class="tab-header">
+          <button class="tab-btn active" onclick="openTab(event,'f_mga_logic','F')">Logic</button>
+          <button class="tab-btn" onclick="openTab(event,'f_mga_methods','F')">Methods</button>
+          <button class="tab-btn" onclick="openTab(event,'f_mga_rules','F')">Decision Rules</button>
         </div>
 
-        <!-- LESSON 2: MULTI-GROUP ANALYSIS (MGA) -->
-        <h2 style="margin-top: 3rem;">2. Multi-Group Analysis (MGA)</h2>
-        <p>Once MICOM (Step 2) is passed, we can ask: "Is the path coefficient different for Group A vs. Group B?"</p>
-
-        <div class="tabs-container">
-            <div class="tab-header">
-                <button class="tab-btn active" onclick="openTab(event, 'mga-theory', 'F')">The Logic</button>
-                <button class="tab-btn" onclick="openTab(event, 'mga-types', 'F')">PLS-MGA vs Permutation</button>
-                <button class="tab-btn" onclick="openTab(event, 'mga-threshold', 'F')">Interpretation</button>
-            </div>
-
-            <!-- Tab: Logic -->
-            <div id="mga-theory" class="tab-content active">
-                <h3>Comparing Path Coefficients</h3>
-                <p>In the standard model, we found <strong>Quality &rarr; Satisfaction</strong> has a coefficient of <strong>0.45</strong>.</p>
-                <p>In MGA, we split the data (e.g., by Gender):</p>
-                <ul style="margin-left: 1.5rem;">
-                    <li><strong>Male Group:</strong> 0.40</li>
-                    <li><strong>Female Group:</strong> 0.60</li>
-                </ul>
-                <p><strong>Question:</strong> Is 0.60 significantly different from 0.40? Or is it just random chance?</p>
-            </div>
-
-            <!-- Tab: Types -->
-            <div id="mga-types" class="tab-content">
-                <h3>Two Main Methods</h3>
-                
-                <div style="margin-bottom: 1.5rem;">
-                    <strong>1. PLS-MGA (Parametric)</strong>
-                    <p>Calculates the difference and tests significance using standard errors. Good for large sample sizes.</p>
-                </div>
-
-                <div>
-                    <strong>2. Permutation (Non-Parametric)</strong>
-                    <p>Shuffles the data randomly to create a "chance" distribution. <strong>Preferred for robustness.</strong> It works better with smaller samples.</p>
-                    <div class="metric-card" style="border-left-color: var(--color-robust);">
-                        <div>
-                            <div class="metric-label">Recommendation</div>
-                            <div class="metric-desc">Run both. If they agree, your result is rock solid.</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tab: Interpretation -->
-            <div id="mga-threshold" class="tab-content">
-                <h3>The Decision: P-Value of Difference</h3>
-                <p>Look at the "p-diff" column in the PLS-MGA results.</p>
-                
-                <div class="metric-card success">
-                    <div>
-                        <div class="metric-label">Significant Difference</div>
-                        <div class="metric-desc">The relationship IS different between the two groups.</div>
-                    </div>
-                    <div class="metric-val">p-diff &lt; 0.05</div>
-                </div>
-
-                <div class="metric-card warning" style="margin-top: 1rem;">
-                    <div>
-                        <div class="metric-label">No Difference</div>
-                        <div class="metric-desc">The groups behave similarly (e.g., Gender doesn't matter).</div>
-                    </div>
-                    <div class="metric-val">p-diff &gt; 0.05</div>
-                </div>
-
-                <div style="background: #F1F5F9; padding: 1rem; border-radius: 8px; margin-top: 1rem;">
-                    <strong>Important:</strong> Always check the <strong>Confidence Intervals</strong>. If they don't overlap (e.g., Males: 0.2-0.4, Females: 0.5-0.7), there is definitely a difference.
-                </div>
-            </div>
+        <div id="f_mga_logic" class="tab-content active">
+          <h3>What MGA Tests</h3>
+          <p>
+            MGA compares path coefficients between groups
+            (e.g., Male vs. Female, Urban vs. Rural).
+          </p>
+          <div class="example-box">
+            β₁ ≠ β₂ → structural relationship differs across groups
+          </div>
         </div>
 
-        <!-- MODULE F CHECKPOINT -->
-        <div style="margin-top: 4rem; padding: 2rem; background: #EEF2FF; border: 1px solid #C7D2FE; border-radius: 12px; text-align: center;">
-            <h3 style="color: #3730A3; margin-bottom: 0.5rem;">Module F Complete!</h3>
-            <p style="color: #3730A3;">
-                You have proven your model is robust across groups (MICOM) and identified where groups differ (MGA).
-                <br>Now it's time to write the paper in <a href="module-g.html" style="text-decoration: underline; font-weight: bold;">Module G (Research Output)</a>.
-            </p>
+        <div id="f_mga_methods" class="tab-content">
+          <h3>Available MGA Methods</h3>
+          <ul style="margin-left:1.5rem;">
+            <li><strong>PLS-MGA:</strong> Non-parametric, widely used</li>
+            <li><strong>Permutation Test:</strong> Most robust, recommended</li>
+            <li><strong>Parametric Test:</strong> Requires stronger assumptions</li>
+          </ul>
+
+          <div class="metric-card info">
+            <div>
+              <div class="metric-label">Best Practice</div>
+              <div class="metric-desc">
+                Report permutation results; use PLS-MGA as supplementary evidence.
+              </div>
+            </div>
+          </div>
         </div>
 
-    </main>
+        <div id="f_mga_rules" class="tab-content">
+          <h3>Interpretation</h3>
+
+          <div class="metric-card success">
+            <div>
+              <div class="metric-label">Group Difference</div>
+              <div class="metric-desc">Structural paths differ significantly</div>
+            </div>
+            <div class="metric-val">p-diff &lt; 0.05</div>
+          </div>
+
+          <p class="note">
+            Always inspect confidence intervals and report effect size differences,
+            not only p-values.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================= -->
+    <!-- SECTION 3: COMMON METHOD BIAS -->
+    <!-- ================================================= -->
+    <section>
+      <h2 style="margin-top:3rem;">3. Common Method Bias (CMB)</h2>
+
+      <p>
+        CMB occurs when variance is driven by the data collection method
+        rather than true relationships.
+      </p>
+
+      <h3>PLS-SEM Remedies</h3>
+      <ul style="margin-left:1.5rem;">
+        <li><strong>Full Collinearity VIF</strong></li>
+        <li><strong>Marker Variable</strong> (advanced)</li>
+      </ul>
+
+      <div class="metric-card success">
+        <div>
+          <div class="metric-label">Full Collinearity VIF</div>
+          <div class="metric-desc">CMB unlikely</div>
+        </div>
+        <div class="metric-val">&lt; 3.3</div>
+      </div>
+    </section>
+
+    <!-- ================================================= -->
+    <!-- SECTION 4: ENDOGENEITY -->
+    <!-- ================================================= -->
+    <section>
+      <h2 style="margin-top:3rem;">4. Endogeneity Assessment</h2>
+
+      <p>
+        Endogeneity exists when predictors correlate with the error term,
+        leading to biased estimates.
+      </p>
+
+      <h3>Gaussian Copula Approach</h3>
+      <ul style="margin-left:1.5rem;">
+        <li>Used in SmartPLS for continuous endogenous predictors</li>
+        <li>Copula term significant → endogeneity present</li>
+      </ul>
+
+      <div class="metric-card warning">
+        <div>
+          <div class="metric-label">Interpretation</div>
+          <div class="metric-desc">
+            If copula term is non-significant, endogeneity is unlikely.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================= -->
+    <!-- SECTION 5: UNOBSERVED HETEROGENEITY -->
+    <!-- ================================================= -->
+    <section>
+      <h2 style="margin-top:3rem;">5. Unobserved Heterogeneity (FIMIX-PLS)</h2>
+
+      <p>
+        Not all heterogeneity is observable.
+        FIMIX-PLS identifies latent segments in the data.
+      </p>
+
+      <h3>Key Fit Indices</h3>
+      <ul style="margin-left:1.5rem;">
+        <li><strong>AIC / BIC:</strong> Lower is better</li>
+        <li><strong>Entropy:</strong> ≥ 0.80 preferred</li>
+      </ul>
+
+      <div class="metric-card success">
+        <div>
+          <div class="metric-label">Segment Quality</div>
+          <div class="metric-desc">Clear class separation</div>
+        </div>
+        <div class="metric-val">Entropy ≥ 0.80</div>
+      </div>
+    </section>
+
+    <!-- ================================================= -->
+    <!-- MODULE END -->
+    <!-- ================================================= -->
+    <div class="module-end">
+      <h3>Robustness Assessment Completed</h3>
+      <p>
+        You have demonstrated invariance, heterogeneity,
+        and protection against bias.
+        Final step:
+        <a href="module-g.html">Module G – Research Output & Reporting</a>.
+      </p>
+    </div>
+
+  </main>
 </div>
 
 <script src="script.js"></script>
