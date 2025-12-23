@@ -1,228 +1,281 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Module B - Data Preparation | SmartPLS Course</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module B – Data Preparation & Screening | SmartPLS 4.0</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="container">
-    
-    <!-- SIDEBAR NAVIGATION -->
-    <nav class="sidebar">
-        <div class="sidebar-title">SmartPLS Masterclass</div>
-        
-        <div class="nav-group">
-            <div class="nav-label">Phase 1: Foundations</div>
-            <a href="module-a.html" class="nav-item mod-A">
-                <span>A. Research Design</span>
-            </a>
-            <!-- Module B is Active -->
-            <a href="module-b.html" class="nav-item mod-B active">
-                <span>B. Data Preparation</span>
-            </a>
+
+  <!-- ================= SIDEBAR ================= -->
+  <nav class="sidebar">
+    <div class="sidebar-title">SmartPLS Masterclass</div>
+
+    <div class="nav-group">
+      <div class="nav-label">Phase 1: Foundations</div>
+      <a href="module-a.html" class="nav-item mod-A">A. Research Design</a>
+      <a href="module-b.html" class="nav-item mod-B active">B. Data Preparation</a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label">Phase 2: Analysis</div>
+      <a href="module-c.html" class="nav-item mod-C">C. Measurement Model</a>
+      <a href="module-d.html" class="nav-item mod-D">D. Structural Model</a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label">Phase 3: Advanced</div>
+      <a href="module-e.html" class="nav-item mod-E">E. Advanced Analysis</a>
+      <a href="module-f.html" class="nav-item mod-F">F. Robustness</a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label">Phase 4: Output</div>
+      <a href="module-g.html" class="nav-item mod-G">G. Research Output</a>
+    </div>
+  </nav>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="main-content">
+
+    <!-- MODULE HEADER -->
+    <div class="tag B">Module B</div>
+    <h1>Data Preparation & Screening</h1>
+    <p class="intro-text">
+      SmartPLS cannot correct poor data quality.
+      This module ensures your dataset is statistically and methodologically sound
+      <strong>before</strong> importing into SmartPLS.
+    </p>
+
+    <!-- ================================================= -->
+    <!-- SECTION 1: DATA SCREENING -->
+    <!-- ================================================= -->
+    <section>
+      <h2>1. Initial Data Screening</h2>
+
+      <p>
+        Survey data typically contains missing values, careless responses,
+        and extreme observations. These issues must be addressed at the dataset level.
+      </p>
+
+      <h3>Missing Values</h3>
+      <ul>
+        <li>Check percentage of missing values per respondent</li>
+        <li>Minor missing values can be imputed</li>
+        <li>Extensive missing values require case deletion</li>
+      </ul>
+
+      <div class="metric-card success">
+        <div>
+          <div class="metric-label">Acceptable Missing Data</div>
+          <div class="metric-desc">Per respondent</div>
         </div>
+        <div class="metric-val">&lt; 5%</div>
+      </div>
 
-        <div class="nav-group">
-            <div class="nav-label">Phase 2: Analysis</div>
-            <a href="module-c.html" class="nav-item mod-C">
-                <span>C. Measurement Model</span>
-            </a>
-            <a href="module-d.html" class="nav-item mod-D">
-                <span>D. Structural Model</span>
-            </a>
+      <h3>Imputation Strategy</h3>
+      <p>
+        Mean replacement within the same construct is acceptable
+        for small amounts of missing data.
+      </p>
+
+      <div class="example-box">
+        Example: Missing item replaced by the respondent’s average
+        score on the same construct.
+      </div>
+    </section>
+
+    <!-- ================================================= -->
+    <!-- SECTION 2: RESPONSE QUALITY -->
+    <!-- ================================================= -->
+    <section>
+      <h2>2. Response Quality & Careless Responding</h2>
+
+      <p>
+        PLS-SEM assumes respondents meaningfully engaged with survey items.
+        Response quality must therefore be assessed explicitly.
+      </p>
+
+      <h3>Straight-Lining</h3>
+      <ul>
+        <li>Detect zero or near-zero variance across items</li>
+        <li>Remove respondents selecting the same scale point repeatedly</li>
+      </ul>
+
+      <h3>Completion Time</h3>
+      <p>
+        Extremely fast responses indicate insufficient cognitive processing.
+      </p>
+
+      <div class="metric-card warning">
+        <div>
+          <div class="metric-label">Rule of Thumb</div>
+          <div class="metric-desc">
+            Remove responses completed in less than one-third of the median time.
+          </div>
         </div>
+      </div>
+    </section>
 
-        <div class="nav-group">
-            <div class="nav-label">Phase 3: Advanced</div>
-            <a href="module-e.html" class="nav-item mod-E">
-                <span>E. Advanced Analysis</span>
-            </a>
-            <a href="module-f.html" class="nav-item mod-F">
-                <span>F. Robustness</span>
-            </a>
+    <!-- ================================================= -->
+    <!-- SECTION 3: NORMALITY & OUTLIERS -->
+    <!-- ================================================= -->
+    <section>
+      <h2>3. Distribution, Normality & Outliers</h2>
+
+      <p>
+        PLS-SEM does not require multivariate normality,
+        but extreme outliers still distort estimation and inference.
+      </p>
+
+      <h3>Univariate Outliers</h3>
+      <p>
+        Use standardized Z-scores to detect extreme values.
+      </p>
+
+      <div class="metric-card danger">
+        <div>
+          <div class="metric-label">Z-Score Threshold</div>
+          <div class="metric-desc">Extreme values</div>
         </div>
+        <div class="metric-val">±3.29</div>
+      </div>
 
-        <div class="nav-group">
-            <div class="nav-label">Phase 4: Output</div>
-            <a href="module-g.html" class="nav-item mod-G">
-                <span>G. Research Output</span>
-            </a>
+      <p class="note">
+        Investigate before deleting: errors first, then genuine extremes.
+      </p>
+    </section>
+
+    <!-- ================================================= -->
+    <!-- SECTION 4: SAMPLE SIZE & POWER -->
+    <!-- ================================================= -->
+    <section>
+      <h2>4. Sample Size & Statistical Power</h2>
+
+      <p>
+        Sample size adequacy depends on model complexity
+        and expected effect sizes.
+      </p>
+
+      <h3>10-Times Rule (Minimum)</h3>
+      <p>
+        Minimum sample size equals ten times the maximum number of
+        structural paths pointing at any construct.
+      </p>
+
+      <div class="example-box">
+        If three paths point to one construct → Minimum N = 30
+      </div>
+
+      <h3>G*Power Analysis (Recommended)</h3>
+      <ul>
+        <li>Test family: t-tests</li>
+        <li>Statistical test: Linear multiple regression</li>
+        <li>Effect size (f²): 0.15 (medium)</li>
+        <li>α = 0.05, Power = 0.80</li>
+      </ul>
+
+      <div class="metric-card info">
+        <div>
+          <div class="metric-label">Reviewer Preference</div>
+          <div class="metric-desc">Transparent power justification</div>
         </div>
-    </nav>
+      </div>
+    </section>
 
-    <!-- MAIN CONTENT AREA -->
-    <main class="main-content">
-        
-        <!-- MODULE HEADER -->
-        <div class="tag B">Module B</div>
-        <h1>Data Preparation & Screening</h1>
-        <p style="font-size: 1.1rem; color: var(--text-muted);">
-            SmartPLS is powerful, but it cannot fix bad data. We perform these steps in Excel or SPSS <strong>before</strong> importing.
-        </p>
+    <!-- ================================================= -->
+    <!-- SECTION 5: COMMON METHOD BIAS -->
+    <!-- ================================================= -->
+    <section>
+      <h2>5. Common Method Bias (CMB)</h2>
 
-        <!-- LESSON 1: DATA CODING & SCREENING -->
-        <h2 style="margin-top: 3rem;">1. Data Screening & Missing Values</h2>
-        <p>Raw survey data often has errors: people skipped questions, or they selected the same answer for everything (Straight-lining).</p>
+      <p>
+        When data are collected from a single survey at one time point,
+        common method bias may inflate relationships.
+      </p>
 
-        <div class="tabs-container">
-            <div class="tab-header">
-                <button class="tab-btn active" onclick="openTab(event, 'miss-theory', 'B')">The Logic</button>
-                <button class="tab-btn" onclick="openTab(event, 'miss-action', 'B')">Handling Missing Data</button>
-                <button class="tab-btn" onclick="openTab(event, 'miss-threshold', 'B')">Thresholds</button>
-            </div>
+      <h3>Procedural Remedies</h3>
+      <ul>
+        <li>Anonymity assurance</li>
+        <li>Clear and concise item wording</li>
+        <li>Variation in scale anchors</li>
+      </ul>
 
-            <!-- Tab: Theory -->
-            <div id="miss-theory" class="tab-content active">
-                <h3>Why do we screen data?</h3>
-                <ul style="margin-left: 1.5rem;">
-                    <li><strong>Accuracy:</strong> Outliers can skew averages (means) artificially.</li>
-                    <li><strong>Power:</strong> Missing data reduces your effective sample size.</li>
-                    <li><strong>Validity:</strong> If a user answers "Strongly Agree" to everything, they aren't reading (Straight-lining).</li>
-                </ul>
-                
-                <div class="metric-card warning" style="margin-top: 1.5rem;">
-                    <div>
-                        <div class="metric-label">Note</div>
-                        <div class="metric-desc">SmartPLS has some basic handling (Mean Replacement), but Excel/SPSS is better for deep cleaning.</div>
-                    </div>
-                </div>
-            </div>
+      <h3>Statistical Test</h3>
+      <p>
+        Full collinearity assessment using VIF values in SmartPLS.
+      </p>
 
-            <!-- Tab: Action -->
-            <div id="miss-action" class="tab-content">
-                <h3>How to handle Missing Data</h3>
-                <p>If a respondent missed 1 or 2 questions, we can <strong>impute</strong> (fill in) the data.</p>
-                
-                <h4 style="margin-top: 1rem;">Method: Mean Replacement</h4>
-                <p>Replace the missing value with the average of the other answers given by <em>that same person</em> for the same construct.</p>
-                <div style="background: #F1F5F9; padding: 10px; border-radius: 6px; margin-top: 0.5rem; font-family: monospace;">
-                    Example: User missed Question 2. Their answers for Q1, Q3, Q4 are 5, 4, 6. <br>
-                    -> Average is 5. <br>
-                    -> Replace missing Q2 with <strong>5</strong>.
-                </div>
-
-                <h4 style="margin-top: 1rem;">Method: Case Deletion</h4>
-                <p>If a user missed an entire section, delete the whole row (the respondent).</p>
-            </div>
-
-            <!-- Tab: Thresholds -->
-            <div id="miss-threshold" class="tab-content">
-                <h3>The "Traffic Light" Rules</h3>
-                
-                <div class="metric-card success">
-                    <div>
-                        <div class="metric-label">Missing Data</div>
-                        <div class="metric-desc">Percentage of missing values per case is acceptable.</div>
-                    </div>
-                    <div class="metric-val">&lt; 5%</div>
-                </div>
-
-                <div class="metric-card danger" style="margin-top: 1rem;">
-                    <div>
-                        <div class="metric-label">Outliers (Z-Score)</div>
-                        <div class="metric-desc">If a data point is > 3.29 standard deviations from the mean, it is an outlier.</div>
-                    </div>
-                    <div class="metric-val">&gt; 3.29</div>
-                </div>
-            </div>
+      <div class="metric-card success">
+        <div>
+          <div class="metric-label">CMB Threshold</div>
+          <div class="metric-desc">Inner VIF values</div>
         </div>
+        <div class="metric-val">&lt; 3.3</div>
+      </div>
+    </section>
 
+    <!-- ================================================= -->
+    <!-- SECTION 6: REVERSE-CODED ITEMS -->
+    <!-- ================================================= -->
+    <section>
+      <h2>6. Reverse-Coded Items</h2>
 
-        <!-- LESSON 2: SAMPLE SIZE LOGIC -->
-        <h2 style="margin-top: 3rem;">2. Sample Size & Power</h2>
-        <p>"How many surveys do I need?" This is the most common question. The answer depends on the complexity of your model.</p>
+      <p>
+        Negatively worded items must be reverse-coded
+        to ensure consistent construct interpretation.
+      </p>
 
-        <div class="tabs-container">
-            <div class="tab-header">
-                <button class="tab-btn active" onclick="openTab(event, 'size-rule', 'B')">10-Times Rule</button>
-                <button class="tab-btn" onclick="openTab(event, 'size-power', 'B')">G*Power (Advanced)</button>
-                <button class="tab-btn" onclick="openTab(event, 'size-example', 'B')">Real Example</button>
-            </div>
+      <div class="example-box">
+        Reverse coding formula:<br>
+        New Value = (Maximum + 1) − Original Value
+      </div>
 
-            <!-- Tab: 10 Times Rule -->
-            <div id="size-rule" class="tab-content active">
-                <h3>The Rule of Thumb (Cohen & Hair)</h3>
-                <p>The minimum sample size should be <strong>10 times</strong> the largest number of structural paths (arrows) pointing to any single construct in your model.</p>
-                
-                <div class="diagram-placeholder" style="height: 150px; background: #E0F2FE; color: #0369A1;">
-                    <div style="text-align: center;">
-                        <div>Construct A &rarr; <strong>Construct B</strong> &larr; Construct C</div>
-                        <div style="font-size: 0.8rem;">(2 Arrows pointing to B)</div>
-                        <div style="font-size: 0.8rem; margin-top: 10px;">Minimum N = 2 * 10 = <strong>20</strong></div>
-                    </div>
-                </div>
+      <p class="note">
+        Failure to reverse-code leads to misleading reliability and validity results.
+      </p>
+    </section>
 
-                <p><strong>Warning:</strong> This is the absolute <em>minimum</em>. Reviewers prefer larger samples (N > 100).</p>
-            </div>
+    <!-- ================================================= -->
+    <!-- SECTION 7: IMPORTING INTO SMARTPLS -->
+    <!-- ================================================= -->
+    <section>
+      <h2>7. Importing Data into SmartPLS</h2>
 
-            <!-- Tab: G*Power -->
-            <div id="size-power" class="tab-content">
-                <h3>The Gold Standard: G*Power Analysis</h3>
-                <p>The "10-times rule" is just a heuristic. For high-quality journals, use <strong>G*Power 3.1</strong> (Free Software).</p>
-                
-                <h4>Settings for PLS-SEM:</h4>
-                <ul style="margin-left: 1.5rem;">
-                    <li><strong>Test family:</strong> t tests</li>
-                    <li><strong>Statistical test:</strong> Linear multiple regression: Fixed model, R² increase</li>
-                    <li><strong>Type of power analysis:</strong> A priori</li>
-                    <li><strong>Effect size f²:</strong> 0.15 (Medium), 0.02 (Small), 0.35 (Large)</li>
-                    <li><strong>α err prob:</strong> 0.05</li>
-                    <li><strong>Power (1-β err prob):</strong> 0.80</li>
-                </ul>
-            </div>
+      <ol>
+        <li>Open SmartPLS 4</li>
+        <li>Create a new project</li>
+        <li>Import Excel or CSV data file</li>
+        <li>Confirm rows = cases, columns = indicators</li>
+        <li>Verify variable names and measurement scales</li>
+      </ol>
 
-            <!-- Tab: Example -->
-            <div id="size-example" class="tab-content">
-                <h3>Scenario Calculation</h3>
-                <p><strong>Your Model:</strong> You have a model where "Customer Loyalty" is predicted by 3 variables: Satisfaction, Trust, and Price.</p>
-                
-                <div class="metric-card success">
-                    <div>
-                        <div class="metric-label">10-Times Calculation</div>
-                        <div class="metric-desc">Largest block of arrows pointing to Loyalty = 3 arrows.</div>
-                    </div>
-                    <div class="metric-val">3 x 10 = 30</div>
-                </div>
-                
-                <p style="margin-top: 1rem;"><strong>Result:</strong> You need at least 30 people. But for a robust study, aim for 150-200.</p>
-            </div>
+      <div class="metric-card info">
+        <div>
+          <div class="metric-label">Important</div>
+          <div class="metric-desc">
+            Import only after completing all screening steps.
+          </div>
         </div>
+      </div>
+    </section>
 
-        <!-- LESSON 3: DATA IMPORTING -->
-        <h2 style="margin-top: 3rem;">3. Importing into SmartPLS</h2>
-        <p>Now that your Excel file is clean, how do we get it in?</p>
-        
-        <div class="tabs-container">
-            <div class="tab-header">
-                <button class="tab-btn active" onclick="openTab(event, 'soft-import', 'B')">Step-by-Step</button>
-            </div>
+    <!-- ================================================= -->
+    <!-- MODULE END -->
+    <!-- ================================================= -->
+    <div class="module-end">
+      <h3>Module B Completed</h3>
+      <p>
+        Your dataset is now clean, reliable, and analysis-ready.
+        Next, we evaluate measurement quality in
+        <a href="module-c.html">Module C – Measurement Model</a>.
+      </p>
+    </div>
 
-            <div id="soft-import" class="tab-content active">
-                <ol style="margin-left: 1.5rem; line-height: 2;">
-                    <li>Open SmartPLS 4.</li>
-                    <li><strong>File</strong> -> <strong>Import Data</strong> (Or right-click Project root -> Import Excel Data).</li>
-                    <li>Select your cleaned Excel file.</li>
-                    <li>The <strong>Import Data</strong> dialog box appears.</li>
-                    <li><strong>Crucial Step:</strong> Ensure your "Observations" (Rows) are identified as <em>Cases</em> and your Columns as <em>Variables</em>.</li>
-                    <li>Map your variables (Optional: You can rename indicators here).</li>
-                    <li>Click <strong>Finish</strong>. Your data is now linked to the project.</li>
-                </ol>
-            </div>
-        </div>
-
-        <!-- END OF MODULE B CHECKPOINT -->
-        <div style="margin-top: 4rem; padding: 2rem; background: #F0FDFA; border: 1px solid #99F6E4; border-radius: 12px; text-align: center;">
-            <h3 style="color: #0F766E; margin-bottom: 0.5rem;">Module B Complete!</h3>
-            <p style="color: #115E59;">
-                Your data is clean and imported. 
-                <br>Next: We assess if our survey questions are valid in <a href="module-c.html" style="text-decoration: underline; font-weight: bold;">Module C (Measurement Model)</a>.
-            </p>
-        </div>
-
-    </main>
+  </main>
 </div>
 
 <script src="script.js"></script>
