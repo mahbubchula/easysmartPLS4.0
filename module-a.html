@@ -43,109 +43,181 @@
 
     <!-- MODULE HEADER -->
     <div class="tag A">Module A</div>
-    <h1>Research Design & Theory</h1>
+    <h1>Research Design & Theory Building</h1>
     <p class="intro-text">
-      This module defines the **conceptual foundation** of your research.
-      If this step is weak, no amount of SmartPLS analysis can save your paper.
+      This module establishes the <strong>conceptual and theoretical backbone</strong> of your research.
+      Weak theory leads to rejection — even if SmartPLS results are perfect.
     </p>
 
     <!-- ================================================= -->
-    <!-- SECTION 1: WHAT IS A RESEARCH MODEL -->
+    <!-- SECTION 1 -->
     <!-- ================================================= -->
     <section>
-      <h2>1. What Is a Research Model?</h2>
+      <h2>1. Why Research Design Comes Before Software</h2>
 
       <p>
-        A research model is a **theory-driven representation** of how abstract concepts
-        (latent variables) are expected to relate to one another.
+        SmartPLS is a <strong>statistical testing tool</strong>, not a thinking tool.
+        It cannot fix unclear theory, poor construct definition, or weak hypotheses.
       </p>
 
-      <p>
-        In PLS-SEM, the model has two inseparable parts:
-      </p>
-
-      <ul>
-        <li><strong>Measurement Model</strong> – how concepts are measured</li>
-        <li><strong>Structural Model</strong> – how concepts influence each other</li>
-      </ul>
-
-      <div class="metric-card info">
+      <div class="metric-card danger">
         <div>
-          <div class="metric-label">Key Idea</div>
+          <div class="metric-label">Common Mistake</div>
           <div class="metric-desc">
-            SmartPLS does not create theory.  
-            It only tests the theory you design here.
+            Running SmartPLS first and thinking later.
           </div>
         </div>
-        <div class="metric-val">Theory First</div>
+        <div class="metric-val">❌</div>
+      </div>
+
+      <div class="metric-card success">
+        <div>
+          <div class="metric-label">Correct Logic</div>
+          <div class="metric-desc">
+            Theory → Model → Hypotheses → Data → SmartPLS
+          </div>
+        </div>
+        <div class="metric-val">✔</div>
       </div>
     </section>
 
     <!-- ================================================= -->
-    <!-- SECTION 2: REFLECTIVE vs FORMATIVE -->
+    <!-- SECTION 2 -->
     <!-- ================================================= -->
     <section>
-      <h2>2. Reflective vs. Formative Constructs</h2>
+      <h2>2. What Exactly Is a Research Model?</h2>
 
       <p>
-        This is the most important conceptual decision in PLS-SEM.
-        A wrong choice here leads to invalid results.
+        A research model is a <strong>simplified representation of reality</strong>,
+        built from theory, prior literature, and logical reasoning.
       </p>
-
-      <h3>Simple Meaning</h3>
-      <ul>
-        <li><strong>Reflective:</strong> The construct causes the indicators</li>
-        <li><strong>Formative:</strong> The indicators create the construct</li>
-      </ul>
 
       <div class="two-col">
         <div class="card">
-          <h4>Reflective (Most Common)</h4>
+          <h4>Measurement Model</h4>
           <p>
-            Example: <strong>Perceived Usefulness</strong><br>
-            If usefulness increases, all related survey items increase.
+            Defines how abstract concepts (e.g., trust, satisfaction) are
+            <strong>measured using observed indicators</strong>.
           </p>
           <p class="note">
-            Removing one item does NOT change the meaning.
+            Evaluated using loadings, CR, AVE, HTMT.
           </p>
         </div>
 
         <div class="card">
-          <h4>Formative (Index)</h4>
+          <h4>Structural Model</h4>
           <p>
-            Example: <strong>Service Quality</strong><br>
-            Punctuality, comfort, and safety together form the construct.
+            Defines how constructs <strong>influence each other</strong>
+            through hypotheses.
           </p>
           <p class="note">
-            Removing one item CHANGES the meaning.
+            Evaluated using β, t-values, R², f², Q².
           </p>
         </div>
+      </div>
+
+      <div class="example-box">
+        Think of the model as a **map** — SmartPLS only checks whether the map is correct.
       </div>
     </section>
 
     <!-- ================================================= -->
-    <!-- SECTION 3: REAL RESEARCH EXAMPLE -->
+    <!-- SECTION 3 -->
     <!-- ================================================= -->
     <section>
-      <h2>3. Real-World Research Example (Journal-Style)</h2>
+      <h2>3. Reflective vs. Formative Constructs (Critical Decision)</h2>
+
+      <p>
+        This decision determines <strong>how SmartPLS evaluates your model</strong>.
+        A wrong choice leads to incorrect conclusions.
+      </p>
+
+      <div class="two-col">
+        <div class="card">
+          <h4>Reflective Constructs</h4>
+          <ul>
+            <li>Construct → Indicators</li>
+            <li>Indicators are interchangeable</li>
+            <li>High inter-correlation expected</li>
+          </ul>
+          <p class="note">
+            Example: Satisfaction, Trust, Intention
+          </p>
+        </div>
+
+        <div class="card">
+          <h4>Formative Constructs</h4>
+          <ul>
+            <li>Indicators → Construct</li>
+            <li>Indicators are not interchangeable</li>
+            <li>Low correlation is acceptable</li>
+          </ul>
+          <p class="note">
+            Example: Service Quality, Socioeconomic Status
+          </p>
+        </div>
+      </div>
+
+      <div class="example-box bad">
+        ❌ Treating Service Quality as reflective without justification
+      </div>
+
+      <div class="example-box">
+        ✔ Most journal reviewers expect **explicit justification** for formative constructs
+      </div>
+    </section>
+
+    <!-- ================================================= -->
+    <!-- SECTION 4 -->
+    <!-- ================================================= -->
+    <section>
+      <h2>4. Writing Strong Hypotheses</h2>
+
+      <p>
+        Hypotheses translate theory into <strong>testable statements</strong>.
+        Weak hypotheses are a major reason for desk rejection.
+      </p>
+
+      <h3>Rules for Good Hypotheses</h3>
+      <ul>
+        <li>Direction must be specified</li>
+        <li>Relationship must be causal</li>
+        <li>Based on literature or theory</li>
+      </ul>
+
+      <div class="example-box">
+        <strong>Good Hypothesis</strong><br>
+        H1: Perceived Usefulness has a positive effect on Adoption Intention.
+      </div>
+
+      <div class="example-box bad">
+        <strong>Bad Hypothesis</strong><br>
+        Perceived Usefulness is related to Adoption Intention.
+      </div>
+    </section>
+
+    <!-- ================================================= -->
+    <!-- SECTION 5 -->
+    <!-- ================================================= -->
+    <section>
+      <h2>5. Mini Research Case (Transportation Example)</h2>
 
       <div class="case-box">
-        <h3>Context: Low-Carbon Urban Mobility</h3>
-
+        <h3>Study Context</h3>
         <p>
-          Cities promote electric buses and integrated public transport,
-          yet commuter adoption remains inconsistent.
+          Understanding commuters’ adoption of low-carbon public transport
+          in developing cities.
         </p>
 
-        <h4>Key Constructs</h4>
+        <h4>Construct Design</h4>
         <ul>
-          <li><strong>Perceived Usefulness (Reflective)</strong></li>
-          <li><strong>Environmental Concern (Reflective)</strong></li>
-          <li><strong>Service Quality (Formative)</strong></li>
-          <li><strong>Adoption Intention (Reflective)</strong></li>
+          <li>Perceived Usefulness (Reflective)</li>
+          <li>Environmental Concern (Reflective)</li>
+          <li>Service Quality (Formative)</li>
+          <li>Adoption Intention (Reflective)</li>
         </ul>
 
-        <h4>Hypotheses</h4>
+        <h4>Hypothesis Structure</h4>
         <div class="hyp-box">
           H1: Perceived Usefulness → Adoption Intention (+)<br>
           H2: Environmental Concern → Adoption Intention (+)<br>
@@ -154,33 +226,9 @@
         </div>
 
         <p class="note">
-          This model structure is commonly accepted in Q1 transportation,
-          sustainability, and information systems journals.
+          This structure aligns with Q1 journals in transportation,
+          sustainability, and information systems.
         </p>
-      </div>
-    </section>
-
-    <!-- ================================================= -->
-    <!-- SECTION 4: HYPOTHESIS WRITING -->
-    <!-- ================================================= -->
-    <section>
-      <h2>4. How to Write Hypotheses Correctly</h2>
-
-      <p>A good hypothesis must be:</p>
-      <ul>
-        <li>Directional</li>
-        <li>Theory-based</li>
-        <li>Testable</li>
-      </ul>
-
-      <div class="example-box">
-        <strong>Correct:</strong><br>
-        H1: Service Quality has a positive effect on Adoption Intention.
-      </div>
-
-      <div class="example-box bad">
-        <strong>Wrong:</strong><br>
-        Service Quality is related to Adoption Intention.
       </div>
     </section>
 
@@ -190,9 +238,9 @@
     <div class="module-end">
       <h3>Module A Completed</h3>
       <p>
-        You now have a complete theoretical and conceptual foundation.
-        Next, we prepare data correctly in
-        <a href="module-b.html">Module B: Data Preparation</a>.
+        You now have a strong theoretical foundation.
+        Next, we ensure your data is suitable for SmartPLS in
+        <a href="module-b.html"><strong>Module B: Data Preparation</strong></a>.
       </p>
     </div>
 
