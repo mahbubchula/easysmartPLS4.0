@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module G - Research Output | SmartPLS Course</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- SIDEBAR NAVIGATION -->
+    <nav class="sidebar">
+        <div class="sidebar-title">SmartPLS Masterclass</div>
+        
+        <div class="nav-group">
+            <div class="nav-label">Phase 1: Foundations</div>
+            <a href="module-a.html" class="nav-item mod-A">
+                <span>A. Research Design</span>
+            </a>
+            <a href="module-b.html" class="nav-item mod-B">
+                <span>B. Data Preparation</span>
+            </a>
+        </div>
+
+        <div class="nav-group">
+            <div class="nav-label">Phase 2: Analysis</div>
+            <a href="module-c.html" class="nav-item mod-C">
+                <span>C. Measurement Model</span>
+            </a>
+            <a href="module-d.html" class="nav-item mod-D">
+                <span>D. Structural Model</span>
+            </a>
+        </div>
+
+        <div class="nav-group">
+            <div class="nav-label">Phase 3: Advanced</div>
+            <a href="module-e.html" class="nav-item mod-E">
+                <span>E. Advanced Analysis</span>
+            </a>
+            <a href="module-f.html" class="nav-item mod-F">
+                <span>F. Robustness</span>
+            </a>
+        </div>
+
+        <div class="nav-group">
+            <div class="nav-label">Phase 4: Output</div>
+            <!-- Module G is Active -->
+            <a href="module-g.html" class="nav-item mod-G active">
+                <span>G. Research Output</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="main-content">
+        
+        <!-- MODULE HEADER -->
+        <div class="tag G">Module G</div>
+        <h1>Research Output & Publication</h1>
+        <p style="font-size: 1.1rem; color: var(--text-muted);">
+            Converting SmartPLS results into a journal-ready manuscript. Formatting tables, figures, and writing the discussion.
+        </p>
+
+        <!-- LESSON 1: REPORTING TABLES -->
+        <h2 style="margin-top: 3rem;">1. Reporting Tables</h2>
+        <p>Reviewers need to see your numbers in a clear, standard format (usually APA style).</p>
+
+        <div class="tabs-container">
+            <div class="tab-header">
+                <button class="tab-btn active" onclick="openTab(event, 'tab-measure', 'G')">Measurement Model</button>
+                <button class="tab-btn" onclick="openTab(event, 'tab-struct', 'G')">Structural Model</button>
+            </div>
+
+            <!-- Tab: Measurement -->
+            <div id="tab-measure" class="tab-content active">
+                <h3>Table 1: The Validity Table</h3>
+                <p>Combine Loadings, Reliability, AVE, and Discriminant Validity (HTMT) into one clean table or split them into two.</p>
+                
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; border: 1px solid var(--border); margin-top: 1rem; font-size: 0.9rem;">
+                        <thead style="background: #F1F5F9;">
+                            <tr>
+                                <th style="padding: 10px; border: 1px solid var(--border); text-align: left;">Construct</th>
+                                <th style="padding: 10px; border: 1px solid var(--border);">Loadings</th>
+                                <th style="padding: 10px; border: 1px solid var(--border);">CR</th>
+                                <th style="padding: 10px; border: 1px solid var(--border);">AVE</th>
+                                <th style="padding: 10px; border: 1px solid var(--border);">HTMT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 8px; border: 1px solid var(--border);">Sat_1</td>
+                                <td style="padding: 8px; border: 1px solid var(--border); text-align: center;">0.825</td>
+                                <td rowspan="3" style="padding: 8px; border: 1px solid var(--border); text-align: center; background: #F0FDF4;">0.892</td>
+                                <td rowspan="3" style="padding: 8px; border: 1px solid var(--border); text-align: center; background: #F0FDF4;">0.675</td>
+                                <td rowspan="3" style="padding: 8px; border: 1px solid var(--border); text-align: center;">-</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px; border: 1px solid var(--border);">Sat_2</td>
+                                <td style="padding: 8px; border: 1px solid var(--border); text-align: center;">0.801</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px; border: 1px solid var(--border);">Sat_3</td>
+                                <td style="padding: 8px; border: 1px solid var(--border); text-align: center;">0.845</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-muted);">
+                    *Use Bold formatting for values that meet the threshold. Add notes at the bottom indicating thresholds (e.g., "Loadings > 0.70").
+                </p>
+            </div>
+
+            <!-- Tab: Structural -->
+            <div id="tab-struct" class="tab-content">
+                <h3>Table 2: Hypothesis Testing</h3>
+                <p>Report the path coefficients, t-statistics, p-values, and decision (Supported/Not Supported).</p>
+                
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; border: 1px solid var(--border); margin-top: 1rem; font-size: 0.9rem;">
+                        <thead style="background: #F1F5F9;">
+                            <tr>
+                                <th style="padding: 10px; border: 1px solid var(--border); text-align: left;">Hypothesis</th>
+                                <th style="padding: 10px; border: 1px solid var(--border);">Relation</th>
+                                <th style="padding: 10px; border: 1px solid var(--border);">β (Coeff)</th>
+                                <th style="padding: 10px; border: 1px solid var(--border);">T-Value</th>
+                                <th style="padding: 10px; border: 1px solid var(--border);">P-Value</th>
+                                <th style="padding: 10px; border: 1px solid var(--border);">Decision</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 8px; border: 1px solid var(--border);">H1</td>
+                                <td style="padding: 8px; border: 1px solid var(--border);">Qual &rarr; Sat</td>
+                                <td style="padding: 8px; border: 1px solid var(--border); text-align: center;">0.452</td>
+                                <td style="padding: 8px; border: 1px solid var(--border); text-align: center;">5.612</td>
+                                <td style="padding: 8px; border: 1px solid var(--border); text-align: center;">0.000</td>
+                                <td style="padding: 8px; border: 1px solid var(--border); text-align: center; background: #F0FDF4; font-weight: bold;">Supported</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px; border: 1px solid var(--border);">H2</td>
+                                <td style="padding: 8px; border: 1px solid var(--border);">Price &rarr; Sat</td>
+                                <td style="padding: 8px; border: 1px solid var(--border); text-align: center;">0.085</td>
+                                <td style="padding: 8px; border: 1px solid var(--border); text-align: center;">1.102</td>
+                                <td style="padding: 8px; border: 1px solid var(--border); text-align: center;">0.270</td>
+                                <td style="padding: 8px; border: 1px solid var(--border); text-align: center; background: #FEF2F2; font-weight: bold;">Not Supp.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- LESSON 2: FIGURES -->
+        <h2 style="margin-top: 3rem;">2. The Path Model Figure</h2>
+        <p>A picture is worth a thousand words. Your final figure should show the significant relationships.</p>
+
+        <div class="tabs-container">
+            <div class="tab-header">
+                <button class="tab-btn active" onclick="openTab(event, 'fig-export', 'G')">Exporting</button>
+                <button class="tab-btn" onclick="openTab(event, 'fig-tips', 'G')">Best Practices</button>
+            </div>
+
+            <!-- Tab: Export -->
+            <div id="fig-export" class="tab-content active">
+                <h3>SmartPLS 4.0 Export</h3>
+                <ol style="margin-left: 1.5rem; line-height: 2;">
+                    <li>In the modeling view, use the <strong>Selection Tool</strong> to select the entire model (or press Ctrl+A).</li>
+                    <li>Right-click on the selected model.</li>
+                    <li>Choose <strong>Copy to Clipboard</strong> or <strong>Save as Graphics...</strong></li>
+                    <li>Recommended Format: <strong>EMF (Vector)</strong> or <strong>PNG</strong>.</li>
+                </ol>
+                <p>Use EMF for Microsoft Word (it scales without pixelating). Use PNG for web.</p>
+            </div>
+
+            <!-- Tab: Tips -->
+            <div id="fig-tips" class="tab-content">
+                <h3>Polishing the Figure</h3>
+                <ul style="margin-left: 1.5rem;">
+                    <li><strong>Significance Levels:</strong> Use stars (*) on the arrows to denote significance (* p < 0.05, ** p < 0.01).</li>
+                    <li><strong>Remove Clutter:</strong> Hide insignificant paths (make them dashed or gray) to highlight the key findings.</li>
+                    <li><strong>Labeling:</strong> Ensure all Latent Variables are legible (avoid overlapping text).</li>
+                    <li><strong>R²:</strong> Add the R² value above the dependent variables (circles).</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- LESSON 3: WRITING & DISCUSSION -->
+        <h2 style="margin-top: 3rem;">3. Writing the Discussion</h2>
+        <p>This is where you earn your publication. Don't just repeat the numbers; explain them.</p>
+
+        <div class="tabs-container">
+            <div class="tab-header">
+                <button class="tab-btn active" onclick="openTab(event, 'write-results', 'G')">Results Section</button>
+                <button class="tab-btn" onclick="openTab(event, 'write-discuss', 'G')">Discussion Section</button>
+            </div>
+
+            <!-- Tab: Results -->
+            <div id="write-results" class="tab-content active">
+                <h3>Template for Reporting a Hypothesis</h3>
+                <p>Use this structure for every hypothesis:</p>
+                <div style="background: #F8FAFC; padding: 1rem; border-left: 4px solid var(--color-output); font-family: monospace; line-height: 1.6;">
+                    <strong>H1</strong> proposed that Website Quality has a positive effect on Customer Satisfaction.<br><br>
+                    As shown in Table 2, the results support <strong>H1</strong> (β = 0.45, t = 5.61, p < 0.001). This indicates that higher website quality leads to significantly higher customer satisfaction levels.
+                </div>
+            </div>
+
+            <!-- Tab: Discussion -->
+            <div id="write-discuss" class="tab-content">
+                <h3>Template for Discussion</h3>
+                <p><strong>Comparison:</strong> "Our findings align with Smith (2020) who also found a strong link between quality and satisfaction..."</p>
+                <p><strong>Explanation:</strong> "The reason why quality impacts satisfaction so strongly is that users equate smooth design with trust..."</p>
+                <p><strong>Implications:</strong></p>
+                <ul style="margin-left: 1.5rem;">
+                    <li><strong>Theoretical:</strong> "This study extends the DeLone & McLean model to include..."</li>
+                    <li><strong>Practical/Managerial:</strong> "Managers should prioritize server speed (Quality) over aesthetics to boost satisfaction."</li>
+                </ul>
+                <p><strong>Limitations:</strong> "The study was limited to [Country] and used a cross-sectional design..."</p>
+            </div>
+        </div>
+
+        <!-- COURSE CONCLUSION -->
+        <div style="margin-top: 5rem; padding: 3rem; background: linear-gradient(135deg, #10B981 0%, #059669 100%); border-radius: 12px; text-align: center; color: white; box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);">
+            <h2 style="color: white; margin-bottom: 1rem;">Course Complete!</h2>
+            <p style="font-size: 1.1rem; max-width: 600px; margin: 0 auto 2rem auto;">
+                Congratulations. You have mastered the complete A-G Workflow of SmartPLS 4.0. You can now design, analyze, and publish your own research paper.
+            </p>
+            
+            <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                <a href="module-a.html" style="background: white; color: #059669; padding: 10px 20px; border-radius: 6px; font-weight: bold; text-decoration: none;">Restart Course</a>
+                <a href="#" style="background: rgba(255,255,255,0.2); color: white; padding: 10px 20px; border-radius: 6px; font-weight: bold; text-decoration: none;">Download Cheat Sheet</a>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
