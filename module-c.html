@@ -1,262 +1,424 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Module C - Measurement Model | SmartPLS Course</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module C – Measurement Model Assessment | SmartPLS 4.0</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="container">
-    
-    <!-- SIDEBAR NAVIGATION -->
-    <nav class="sidebar">
-        <div class="sidebar-title">SmartPLS Masterclass</div>
-        
-        <div class="nav-group">
-            <div class="nav-label">Phase 1: Foundations</div>
-            <a href="module-a.html" class="nav-item mod-A">
-                <span>A. Research Design</span>
-            </a>
-            <a href="module-b.html" class="nav-item mod-B">
-                <span>B. Data Preparation</span>
-            </a>
+
+  <!-- ================= SIDEBAR ================= -->
+  <nav class="sidebar">
+    <div class="sidebar-title">SmartPLS Masterclass</div>
+
+    <div class="nav-group">
+      <div class="nav-label">Phase 1: Foundations</div>
+      <a href="module-a.html" class="nav-item mod-A">A. Research Design</a>
+      <a href="module-b.html" class="nav-item mod-B">B. Data Preparation</a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label">Phase 2: Analysis</div>
+      <a href="module-c.html" class="nav-item mod-C active">C. Measurement Model</a>
+      <a href="module-d.html" class="nav-item mod-D">D. Structural Model</a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label">Phase 3: Advanced</div>
+      <a href="module-e.html" class="nav-item mod-E">E. Advanced Analysis</a>
+      <a href="module-f.html" class="nav-item mod-F">F. Robustness</a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label">Phase 4: Output</div>
+      <a href="module-g.html" class="nav-item mod-G">G. Research Output</a>
+    </div>
+  </nav>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="main-content">
+
+    <!-- MODULE HEADER -->
+    <div class="tag C">Module C</div>
+    <h1>Measurement Model Assessment</h1>
+    <p class="intro-text">
+      This module assesses whether your indicators (survey items) measure your constructs correctly.
+      In journal review, measurement model problems are one of the most common reasons for rejection.
+    </p>
+
+    <!-- ================================================= -->
+    <!-- SECTION 0: QUICK WORKFLOW -->
+    <!-- ================================================= -->
+    <section>
+      <h2>0. The Correct Workflow (Do Not Skip)</h2>
+      <ol style="margin-left:1.5rem; line-height:2;">
+        <li>Run <strong>PLS-SEM Algorithm</strong></li>
+        <li>Check <strong>Reflective Measurement</strong>: Loadings → Reliability → AVE → Discriminant Validity</li>
+        <li>If you have <strong>Formative Constructs</strong>: Weights → VIF → Significance (Bootstrapping)</li>
+        <li>Only after measurement passes → go to <strong>Module D (Structural Model)</strong></li>
+      </ol>
+
+      <div class="metric-card warning">
+        <div>
+          <div class="metric-label">Rule</div>
+          <div class="metric-desc">
+            Never interpret structural paths if measurement is not valid.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================= -->
+    <!-- SECTION 1: INDICATOR RELIABILITY -->
+    <!-- ================================================= -->
+    <section>
+      <h2 style="margin-top:3rem;">1. Indicator Reliability (Outer Loadings)</h2>
+      <p>
+        Outer loading shows how strongly an indicator represents its construct.
+        It is essentially the indicator’s “signal strength” for that latent variable.
+      </p>
+
+      <div class="tabs-container">
+        <div class="tab-header">
+          <button class="tab-btn active" onclick="openTab(event, 'c_load_logic', 'C')">Meaning</button>
+          <button class="tab-btn" onclick="openTab(event, 'c_load_rules', 'C')">Decision Rules</button>
+          <button class="tab-btn" onclick="openTab(event, 'c_load_steps', 'C')">SmartPLS Steps</button>
         </div>
 
-        <div class="nav-group">
-            <div class="nav-label">Phase 2: Analysis</div>
-            <!-- Module C is Active -->
-            <a href="module-c.html" class="nav-item mod-C active">
-                <span>C. Measurement Model</span>
-            </a>
-            <a href="module-d.html" class="nav-item mod-D">
-                <span>D. Structural Model</span>
-            </a>
+        <div id="c_load_logic" class="tab-content active">
+          <h3>Meaning (Not Just a Number)</h3>
+          <p>
+            A loading of <strong>0.708</strong> is special because it implies:
+          </p>
+          <div class="example-box">
+            0.708² ≈ 0.50 → the construct explains ~50% of the indicator’s variance.
+          </div>
+          <p class="note">
+            This is why 0.708 is often used as the target threshold.
+          </p>
         </div>
 
-        <div class="nav-group">
-            <div class="nav-label">Phase 3: Advanced</div>
-            <a href="module-e.html" class="nav-item mod-E">
-                <span>E. Advanced Analysis</span>
-            </a>
-            <a href="module-f.html" class="nav-item mod-F">
-                <span>F. Robustness</span>
-            </a>
+        <div id="c_load_rules" class="tab-content">
+          <h3>Traffic Light Rules</h3>
+
+          <div class="metric-card success">
+            <div>
+              <div class="metric-label">Keep</div>
+              <div class="metric-desc">Strong indicator</div>
+            </div>
+            <div class="metric-val">≥ 0.708</div>
+          </div>
+
+          <div class="metric-card warning" style="margin-top:1rem;">
+            <div>
+              <div class="metric-label">Review Carefully</div>
+              <div class="metric-desc">
+                Consider removing only if AVE/CR improves and content validity is not harmed.
+              </div>
+            </div>
+            <div class="metric-val">0.40–0.70</div>
+          </div>
+
+          <div class="metric-card danger" style="margin-top:1rem;">
+            <div>
+              <div class="metric-label">Remove</div>
+              <div class="metric-desc">Weak indicator; usually should be dropped</div>
+            </div>
+            <div class="metric-val">&lt; 0.40</div>
+          </div>
+
+          <p class="note">
+            Do not delete items mechanically. Preserve theoretical meaning first.
+          </p>
         </div>
 
-        <div class="nav-group">
-            <div class="nav-label">Phase 4: Output</div>
-            <a href="module-g.html" class="nav-item mod-G">
-                <span>G. Research Output</span>
-            </a>
+        <div id="c_load_steps" class="tab-content">
+          <h3>SmartPLS 4 Steps</h3>
+          <ol style="margin-left:1.5rem; line-height:2;">
+            <li><strong>Calculate</strong> → <strong>PLS-SEM Algorithm</strong></li>
+            <li>Go to <strong>Results</strong> → <strong>Outer Loadings</strong></li>
+            <li>Check indicators for each construct</li>
+          </ol>
+          <p class="note">
+            You can also show loadings directly on the model view (top toolbar display options).
+          </p>
         </div>
-    </nav>
+      </div>
+    </section>
 
-    <!-- MAIN CONTENT AREA -->
-    <main class="main-content">
-        
-        <!-- MODULE HEADER -->
-        <div class="tag C">Module C</div>
-        <h1>Measurement Model Assessment</h1>
-        <p style="font-size: 1.1rem; color: var(--text-muted);">
-            The "Outer Model". We check if our survey questions (indicators) are accurately measuring the latent variables (constructs).
-        </p>
+    <!-- ================================================= -->
+    <!-- SECTION 2: INTERNAL CONSISTENCY -->
+    <!-- ================================================= -->
+    <section>
+      <h2 style="margin-top:3rem;">2. Internal Consistency Reliability</h2>
+      <p>
+        Reliability asks: do the indicators of a construct move together consistently?
+        In PLS-SEM, we primarily report <strong>Composite Reliability (ρc)</strong> and often <strong>ρA</strong>.
+      </p>
 
-        <!-- LESSON 1: INDICATOR RELIABILITY (LOADINGS) -->
-        <h2 style="margin-top: 3rem;">1. Indicator Reliability</h2>
-        <p>Does a specific survey question belong to the construct it's assigned to?</p>
-
-        <div class="tabs-container">
-            <div class="tab-header">
-                <button class="tab-btn active" onclick="openTab(event, 'load-theory', 'C')">The Logic</button>
-                <button class="tab-btn" onclick="openTab(event, 'load-threshold', 'C')">Thresholds</button>
-                <button class="tab-btn" onclick="openTab(event, 'load-software', 'C')">SmartPLS Steps</button>
-            </div>
-
-            <!-- Tab: Logic -->
-            <div id="load-theory" class="tab-content active">
-                <h3>Outer Loadings</h3>
-                <p>The Outer Loading is a correlation value (0 to 1) showing how strongly an indicator is connected to its construct.</p>
-                <div class="diagram-placeholder" style="height: 150px; background: #FFF7ED; color: #C2410C;">
-                    <div style="text-align: center;">
-                        <div>Construct: "Quality"</div>
-                        <div style="margin: 5px 0;">| (0.85)</div>
-                        <div>Question 1: "The site is fast"</div>
-                    </div>
-                </div>
-                <p><strong>Analogy:</strong> If you throw a ball at a target, how close did it land to the bullseye? High loading = Close to bullseye.</p>
-            </div>
-
-            <!-- Tab: Thresholds -->
-            <div id="load-threshold" class="tab-content">
-                <h3>The Traffic Light Rules</h3>
-                <div class="metric-card success">
-                    <div>
-                        <div class="metric-label">Acceptable</div>
-                        <div class="metric-desc">The question is a strong measure.</div>
-                    </div>
-                    <div class="metric-val">&gt; 0.708</div>
-                </div>
-                <div class="metric-card warning" style="margin-top: 1rem;">
-                    <div>
-                        <div class="metric-label">Exploratory (Check carefully)</div>
-                        <div class="metric-desc">Between 0.40 and 0.70. Keep only if deleting it increases AVE/Composite Reliability.</div>
-                    </div>
-                    <div class="metric-val">0.4 - 0.7</div>
-                </div>
-                <div class="metric-card danger" style="margin-top: 1rem;">
-                    <div>
-                        <div class="metric-label">Delete</div>
-                        <div class="metric-desc">The question does not belong here. Remove it from the model.</div>
-                    </div>
-                    <div class="metric-val">&lt; 0.40</div>
-                </div>
-            </div>
-
-            <!-- Tab: Software -->
-            <div id="load-software" class="tab-content">
-                <h3>How to get this in SmartPLS 4</h3>
-                <ol style="margin-left: 1.5rem; line-height: 2;">
-                    <li>Run the algorithm (<strong>Run</strong> -> <strong>PLS-SEM Algorithm</strong>).</li>
-                    <li>Go to the <strong>Final Results</strong> tab on the right side.</li>
-                    <li>Click <strong>Construct Reliability/Validity</strong>.</li>
-                    <li>Look at the first table: <strong>Outer Loadings</strong>.</li>
-                </ol>
-                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);">
-                    <strong>Pro Tip:</strong> To see loadings graphically on the model, click the calculation button (small calculator icon) on the top toolbar and select "Path Coefficients" or "Outer Loadings" view.
-                </p>
-            </div>
+      <div class="tabs-container">
+        <div class="tab-header">
+          <button class="tab-btn active" onclick="openTab(event, 'c_rel_metrics', 'C')">Which Metric?</button>
+          <button class="tab-btn" onclick="openTab(event, 'c_rel_rules', 'C')">Thresholds</button>
+          <button class="tab-btn" onclick="openTab(event, 'c_rel_steps', 'C')">SmartPLS Steps</button>
         </div>
 
-        <!-- LESSON 2: INTERNAL CONSISTENCY -->
-        <h2 style="margin-top: 3rem;">2. Internal Consistency Reliability</h2>
-        <p>Do all the questions for a construct measure the same thing consistently?</p>
+        <div id="c_rel_metrics" class="tab-content active">
+          <h3>Cronbach’s Alpha vs. Composite Reliability vs. rho_A</h3>
+          <ul style="margin-left:1.5rem; line-height:1.9;">
+            <li><strong>Cronbach’s Alpha (α)</strong>: lower bound; assumes equal indicator quality</li>
+            <li><strong>Composite Reliability (ρc)</strong>: preferred; weights indicators by their loadings</li>
+            <li><strong>rho_A (ρA)</strong>: often recommended as a more accurate reliability estimate in PLS</li>
+          </ul>
 
-        <div class="tabs-container">
-            <div class="tab-header">
-                <button class="tab-btn active" onclick="openTab(event, 'cr-theory', 'C')">Composite Reliability</button>
-                <button class="tab-btn" onclick="openTab(event, 'cr-threshold', 'C')">Thresholds</button>
+          <div class="metric-card info">
+            <div>
+              <div class="metric-label">Reporting Practice</div>
+              <div class="metric-desc">
+                Many Q1 papers report α, ρA, and ρc together for transparency.
+              </div>
             </div>
-
-            <div id="cr-theory" class="tab-content active">
-                <h3>Why not Cronbach's Alpha?</h3>
-                <p>Traditional statistics use "Cronbach's Alpha". However, PLS-SEM prefers <strong>Composite Reliability (rho_c)</strong>.</p>
-                <ul style="margin-left: 1.5rem;">
-                    <li><strong>Cronbach's Alpha:</strong> Assumes all indicators are equally important ("Tau-equivalent"). This is often unrealistic.</li>
-                    <li><strong>Composite Reliability:</strong> Doesn't assume equal importance. It acknowledges that some questions might be better measures than others.</li>
-                </ul>
-            </div>
-
-            <div id="cr-threshold" class="tab-content">
-                <h3>Thresholds for Consistency</h3>
-                <div class="metric-card success">
-                    <div>
-                        <div class="metric-label">Composite Reliability</div>
-                        <div class="metric-desc">The construct is internally consistent.</div>
-                    </div>
-                    <div class="metric-val">&gt; 0.70</div>
-                </div>
-                <p style="margin-top: 1rem; font-size: 0.9rem;">
-                    For exploratory research, values between <strong>0.60 and 0.70</strong> are sometimes accepted.
-                </p>
-            </div>
+          </div>
         </div>
 
-        <!-- LESSON 3: CONVERGENT VALIDITY (AVE) -->
-        <h2 style="margin-top: 3rem;">3. Convergent Validity</h2>
-        <p>Does the construct explain a large amount of variance in its indicators?</p>
+        <div id="c_rel_rules" class="tab-content">
+          <h3>Reliability Thresholds</h3>
 
-        <div class="tabs-container">
-            <div class="tab-header">
-                <button class="tab-btn active" onclick="openTab(event, 'ave-theory', 'C')">The Concept</button>
-                <button class="tab-btn" onclick="openTab(event, 'ave-threshold', 'C')">Thresholds</button>
+          <div class="metric-card success">
+            <div>
+              <div class="metric-label">Good</div>
+              <div class="metric-desc">Suitable for most confirmatory research</div>
             </div>
+            <div class="metric-val">0.70–0.95</div>
+          </div>
 
-            <div id="ave-theory" class="tab-content active">
-                <h3>Average Variance Extracted (AVE)</h3>
-                <p>AVE tells you: "On average, how much of the information in the questions is captured by the construct?"</p>
-                <p>If AVE is low, it means your questions are "noisy" or measuring random error, not the construct.</p>
-                <div class="diagram-placeholder" style="height: 150px; background: #FFEDD5; color: #C2410C;">
-                    <div style="text-align: center;">
-                        <div style="font-size: 0.9rem;">Construct captures 60% of the info (AVE = 0.60)</div>
-                        <div style="font-size: 0.8rem;">40% is just Error/Noise</div>
-                    </div>
-                </div>
+          <div class="metric-card warning" style="margin-top:1rem;">
+            <div>
+              <div class="metric-label">Exploratory Acceptable</div>
+              <div class="metric-desc">Sometimes acceptable for early-stage scales</div>
             </div>
+            <div class="metric-val">0.60–0.70</div>
+          </div>
 
-            <div id="ave-threshold" class="tab-content">
-                <h3>The 50% Rule</h3>
-                <div class="metric-card success">
-                    <div>
-                        <div class="metric-label">AVE</div>
-                        <div class="metric-desc">Convergent Validity is established.</div>
-                    </div>
-                    <div class="metric-val">&gt; 0.50</div>
-                </div>
-                <p style="margin-top: 1rem;">
-                    <strong>Meaning:</strong> The construct explains at least 50% of the variance in its indicators.
-                </p>
+          <div class="metric-card danger" style="margin-top:1rem;">
+            <div>
+              <div class="metric-label">Too High</div>
+              <div class="metric-desc">May indicate redundancy (items are basically duplicates)</div>
             </div>
+            <div class="metric-val">&gt; 0.95</div>
+          </div>
         </div>
 
-        <!-- LESSON 4: DISCRIMINANT VALIDITY (HTMT) -->
-        <h2 style="margin-top: 3rem;">4. Discriminant Validity</h2>
-        <p>Is this construct statistically different from the other constructs in the model?</p>
+        <div id="c_rel_steps" class="tab-content">
+          <h3>SmartPLS 4 Steps</h3>
+          <ol style="margin-left:1.5rem; line-height:2;">
+            <li>Run <strong>PLS-SEM Algorithm</strong></li>
+            <li>Results → <strong>Construct Reliability and Validity</strong></li>
+            <li>Read α, ρA, and ρc</li>
+          </ol>
+        </div>
+      </div>
+    </section>
 
-        <div class="tabs-container">
-            <div class="tab-header">
-                <button class="tab-btn active" onclick="openTab(event, 'htmt-theory', 'C')">HTMT Ratio</button>
-                <button class="tab-btn" onclick="openTab(event, 'htmt-threshold', 'C')">Thresholds</button>
-            </div>
+    <!-- ================================================= -->
+    <!-- SECTION 3: CONVERGENT VALIDITY -->
+    <!-- ================================================= -->
+    <section>
+      <h2 style="margin-top:3rem;">3. Convergent Validity (AVE)</h2>
+      <p>
+        Convergent validity asks whether indicators of a construct truly converge
+        to represent the same concept.
+      </p>
 
-            <div id="htmt-theory" class="tab-content active">
-                <h3>Heterotrait-Monotrait (HTMT) Ratio</h3>
-                <p>This is the modern, gold-standard test for discriminant validity in PLS-SEM.</p>
-                <p><strong>Old Method (Fornell-Larcker):</strong> Comparing square root of AVE to correlations. (Now considered too liberal).</p>
-                <p><strong>New Method (HTMT):</strong> Checks if the correlation between two constructs is significantly different from 1.</p>
-                
-                <div class="metric-card warning" style="margin-top: 1rem;">
-                    <div>
-                        <div class="metric-label">Intuition</div>
-                        <div class="metric-desc">If HTMT is high (near 1.0), the two constructs are basically the same thing. You must merge them or remove one.</div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="htmt-threshold" class="tab-content">
-                <h3>HTMT Thresholds</h3>
-                <div class="metric-card success">
-                    <div>
-                        <div class="metric-label">Conservative</div>
-                        <div class="metric-desc">Very safe threshold for most journals.</div>
-                    </div>
-                    <div class="metric-val">&lt; 0.85</div>
-                </div>
-                <div class="metric-card warning" style="margin-top: 1rem;">
-                    <div>
-                        <div class="metric-label">Relaxed (Henseler et al.)</div>
-                        <div class="metric-desc">Acceptable if 0.85 is too strict for your field.</div>
-                    </div>
-                    <div class="metric-val">&lt; 0.90</div>
-                </div>
-                <p style="margin-top: 1rem; color: var(--text-muted);">
-                    Note: The HTMT value should be compared to 1. Values above 1.0 clearly indicate a lack of discriminant validity.
-                </p>
-            </div>
+      <div class="tabs-container">
+        <div class="tab-header">
+          <button class="tab-btn active" onclick="openTab(event, 'c_ave_meaning', 'C')">Meaning</button>
+          <button class="tab-btn" onclick="openTab(event, 'c_ave_rules', 'C')">Thresholds</button>
+          <button class="tab-btn" onclick="openTab(event, 'c_ave_steps', 'C')">SmartPLS Steps</button>
         </div>
 
-        <!-- MODULE C CHECKPOINT -->
-        <div style="margin-top: 4rem; padding: 2rem; background: #FFF7ED; border: 1px solid #FDBA74; border-radius: 12px; text-align: center;">
-            <h3 style="color: #9A3412; margin-bottom: 0.5rem;">Measurement Model Complete!</h3>
-            <p style="color: #9A3412;">
-                If your Loadings > 0.7, AVE > 0.5, and HTMT < 0.85...
-                <br>Congratulations! Your survey is valid. 
-                <br>Next: We test our hypotheses in <a href="module-d.html" style="text-decoration: underline; font-weight: bold;">Module D (Structural Model)</a>.
-            </p>
+        <div id="c_ave_meaning" class="tab-content active">
+          <h3>AVE Meaning</h3>
+          <p>
+            AVE indicates the proportion of indicator variance captured by the construct.
+          </p>
+          <div class="example-box">
+            AVE = 0.60 → construct captures 60% signal, 40% is measurement error.
+          </div>
         </div>
 
-    </main>
+        <div id="c_ave_rules" class="tab-content">
+          <h3>Threshold</h3>
+          <div class="metric-card success">
+            <div>
+              <div class="metric-label">AVE</div>
+              <div class="metric-desc">Convergent validity established</div>
+            </div>
+            <div class="metric-val">≥ 0.50</div>
+          </div>
+        </div>
+
+        <div id="c_ave_steps" class="tab-content">
+          <h3>SmartPLS 4 Steps</h3>
+          <ol style="margin-left:1.5rem; line-height:2;">
+            <li>Results → <strong>Construct Reliability and Validity</strong></li>
+            <li>Check <strong>AVE</strong> for each reflective construct</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================= -->
+    <!-- SECTION 4: DISCRIMINANT VALIDITY -->
+    <!-- ================================================= -->
+    <section>
+      <h2 style="margin-top:3rem;">4. Discriminant Validity (HTMT + Evidence)</h2>
+      <p>
+        Discriminant validity ensures that constructs are empirically distinct.
+        Modern PLS-SEM practice prioritizes <strong>HTMT</strong>.
+      </p>
+
+      <div class="tabs-container">
+        <div class="tab-header">
+          <button class="tab-btn active" onclick="openTab(event, 'c_htmt_meaning', 'C')">Meaning</button>
+          <button class="tab-btn" onclick="openTab(event, 'c_htmt_rules', 'C')">Thresholds</button>
+          <button class="tab-btn" onclick="openTab(event, 'c_htmt_inference', 'C')">HTMT Inference</button>
+          <button class="tab-btn" onclick="openTab(event, 'c_htmt_steps', 'C')">SmartPLS Steps</button>
+        </div>
+
+        <div id="c_htmt_meaning" class="tab-content active">
+          <h3>Meaning</h3>
+          <p>
+            HTMT estimates how similar two constructs are.
+            If HTMT is very high, the constructs may be measuring the same concept.
+          </p>
+        </div>
+
+        <div id="c_htmt_rules" class="tab-content">
+          <h3>Thresholds</h3>
+
+          <div class="metric-card success">
+            <div>
+              <div class="metric-label">Conservative</div>
+              <div class="metric-desc">Suitable for most fields</div>
+            </div>
+            <div class="metric-val">&lt; 0.85</div>
+          </div>
+
+          <div class="metric-card warning" style="margin-top:1rem;">
+            <div>
+              <div class="metric-label">More Liberal</div>
+              <div class="metric-desc">Sometimes accepted depending on domain</div>
+            </div>
+            <div class="metric-val">&lt; 0.90</div>
+          </div>
+        </div>
+
+        <div id="c_htmt_inference" class="tab-content">
+          <h3>HTMT Inference (Bootstrapped CI)</h3>
+          <p>
+            Strong evidence is obtained when the bootstrapped confidence interval of HTMT
+            does <strong>not</strong> include 1.
+          </p>
+
+          <div class="metric-card success">
+            <div>
+              <div class="metric-label">Best Evidence</div>
+              <div class="metric-desc">HTMT CI does not include 1.00</div>
+            </div>
+            <div class="metric-val">CI ≠ 1</div>
+          </div>
+
+          <p class="note">
+            Many reviewers now prefer “HTMT inference” over relying only on a fixed cutoff.
+          </p>
+        </div>
+
+        <div id="c_htmt_steps" class="tab-content">
+          <h3>SmartPLS 4 Steps</h3>
+          <ol style="margin-left:1.5rem; line-height:2;">
+            <li>Results → <strong>Discriminant Validity</strong> → <strong>HTMT</strong></li>
+            <li>For inference: run <strong>Bootstrapping</strong></li>
+            <li>Bootstrapping results → HTMT inference / confidence intervals</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================= -->
+    <!-- SECTION 5: FORMATIVE MEASUREMENT (IF ANY) -->
+    <!-- ================================================= -->
+    <section>
+      <h2 style="margin-top:3rem;">5. Formative Measurement Model (If You Have Formative Constructs)</h2>
+      <p>
+        Reflective and formative assessment are different.
+        For formative constructs, you do not use outer loadings and AVE in the same way.
+      </p>
+
+      <div class="tabs-container">
+        <div class="tab-header">
+          <button class="tab-btn active" onclick="openTab(event, 'c_form_logic', 'C')">What to Check</button>
+          <button class="tab-btn" onclick="openTab(event, 'c_form_rules', 'C')">Thresholds</button>
+          <button class="tab-btn" onclick="openTab(event, 'c_form_steps', 'C')">SmartPLS Steps</button>
+        </div>
+
+        <div id="c_form_logic" class="tab-content active">
+          <h3>Formative Checklist</h3>
+          <ul style="margin-left:1.5rem; line-height:1.9;">
+            <li><strong>Collinearity:</strong> indicator VIF values</li>
+            <li><strong>Indicator weights:</strong> contribution of each indicator</li>
+            <li><strong>Significance:</strong> bootstrapped t-values/p-values for weights</li>
+            <li><strong>Content validity:</strong> theoretical coverage is essential</li>
+          </ul>
+        </div>
+
+        <div id="c_form_rules" class="tab-content">
+          <h3>Typical Rules</h3>
+          <div class="metric-card success">
+            <div>
+              <div class="metric-label">Formative VIF</div>
+              <div class="metric-desc">Collinearity acceptable</div>
+            </div>
+            <div class="metric-val">&lt; 3.3</div>
+          </div>
+
+          <div class="metric-card warning" style="margin-top:1rem;">
+            <div>
+              <div class="metric-label">Weights</div>
+              <div class="metric-desc">
+                If weight is non-significant but loading is high, consider keeping based on theory.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="c_form_steps" class="tab-content">
+          <h3>SmartPLS 4 Steps</h3>
+          <ol style="margin-left:1.5rem; line-height:2;">
+            <li>Run <strong>PLS-SEM Algorithm</strong></li>
+            <li>Results → <strong>Collinearity Statistics (VIF)</strong></li>
+            <li>Run <strong>Bootstrapping</strong> → check indicator <strong>weights</strong></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================= -->
+    <!-- MODULE END -->
+    <!-- ================================================= -->
+    <div class="module-end">
+      <h3>Measurement Model Completed</h3>
+      <p>
+        If your loadings, reliability, AVE, and HTMT are acceptable,
+        you may proceed to hypothesis testing in
+        <a href="module-d.html">Module D – Structural Model</a>.
+      </p>
+    </div>
+
+  </main>
 </div>
 
 <script src="script.js"></script>
